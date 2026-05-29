@@ -1,0 +1,4 @@
+mars_sim/.env
+**/__pycache__/
+*.pyc
+*.pyo

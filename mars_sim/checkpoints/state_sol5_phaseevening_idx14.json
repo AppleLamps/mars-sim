@@ -1,0 +1,355 @@
+{
+  "world": {
+    "power_level": 42.3625,
+    "oxygen": 81.40398567516999,
+    "water": 351.6192174958043,
+    "food_days": 41.45856788031329,
+    "habitat_integrity": 88.68376762897549,
+    "rover_fuel": 0.0,
+    "greenhouse_efficiency": 57.5625,
+    "sol_number": 5,
+    "current_phase": "evening",
+    "phase_index": 14,
+    "recent_events": [
+      "Dust storm clearing; solar efficiency recovering.",
+      "EVA recovered sample S1-697 from Sector C.",
+      "DUST STORM: solar panels at 55% efficiency for 1 phase(s)",
+      "Scientist analyzed S1-697 via organic_signature_analysis: trace organics detected.",
+      "Resource request DENIED: Medic requested 1.0 food, stockpile empty.",
+      "Dust storm clearing; solar efficiency recovering.",
+      "EVA recovered sample S2-130 from Sector C.",
+      "Scientist analyzed S2-130 via organic_signature_analysis: trace organics detected.",
+      "Vote resolved: 'Resource Allocation for Food Supplies' -> Request food from the mission authority ({'Request food from the mission authority': 2, 'Conduct an EVA to search for edible resources': 1, 'Increase greenhouse efficiency to maximize food production': 0})",
+      "Radiation monitor flagged brief spike during midday.",
+      "Resource request DENIED: Engineer requested 50.0 food, stockpile empty.",
+      "Vote resolved: 'Resource Allocation for Food Supplies' -> Request food from the mission authority ({'Request food from the mission authority': 1, 'Conduct an EVA to search for edible resources': 1, 'Increase greenhouse efficiency to maximize food production': 0})",
+      "DUST STORM: solar panels at 63% efficiency for 3 phase(s)",
+      "Scientist observed sensors: All primary sensors nominal; minor calibration drift on pressure.",
+      "Resource request DENIED: Medic requested 50.0 food, stockpile empty.",
+      "Dust storm clearing; solar efficiency recovering.",
+      "EVA recovered sample S5-195 from Sector D.",
+      "Scientist analyzed S5-195 via spectroscopy: trace organics detected.",
+      "DUST STORM: solar panels at 65% efficiency for 3 phase(s)",
+      "Anomalous methane spike detected near Sector C."
+    ],
+    "agent_relationships": {
+      "Commander": {
+        "Engineer": 0.16,
+        "Scientist": 0.17,
+        "Medic": 0.235
+      },
+      "Engineer": {
+        "Commander": 0.08,
+        "Scientist": 0.01,
+        "Medic": 0.060000000000000005
+      },
+      "Scientist": {
+        "Commander": 0.1,
+        "Engineer": 0.02,
+        "Medic": 0.08
+      },
+      "Medic": {
+        "Commander": 0.23,
+        "Engineer": 0.12000000000000001,
+        "Scientist": 0.13
+      }
+    },
+    "public_messages": [
+      {
+        "sol": 1,
+        "phase": "evening",
+        "from_agent": "Medic",
+        "to": "all",
+        "content": "As we continue our operations, I want to remind everyone that our current oxygen levels are good at 91.5%, water is ample at 392L, and food reserves are sufficient for 45.1 days. Let's keep monitoring our resources closely and remain vigilant."
+      },
+      {
+        "sol": 2,
+        "phase": "midday",
+        "from_agent": "Commander",
+        "to": "all",
+        "content": "Team, we are currently in a stable condition with our resources. Oxygen is at 90.1%, water at 385L, and food is at 44.5 days. Let's maintain this momentum and continue monitoring our supplies closely. Stay vigilant and work together!"
+      },
+      {
+        "sol": 2,
+        "phase": "midday",
+        "from_agent": "Medic",
+        "to": "all",
+        "content": "Attention crew: Resources are currently stable with oxygen at 90.1%, water at 385L, and food at 44.5 days. However, we must remain vigilant as our food stockpile is empty. I will continue advocating for food resources and monitor our supplies closely."
+      },
+      {
+        "sol": 3,
+        "phase": "morning",
+        "from_agent": "Commander",
+        "to": "all",
+        "content": "Crew, we currently have no food in stock, and it's critical we address this soon. The vote on food resource allocation is still pending, and I encourage everyone to participate. Let's prioritize our survival and mission continuity by making a well-informed decision."
+      },
+      {
+        "sol": 3,
+        "phase": "midday",
+        "from_agent": "Medic",
+        "to": "all",
+        "content": "Attention crew: Our food stockpile is currently empty, and we are in a critical situation. I urge everyone to remain focused on our previous decision to request food from mission authority. Let's continue to monitor our oxygen and water levels closely, and prepare for any necessary actions."
+      },
+      {
+        "sol": 3,
+        "phase": "evening",
+        "from_agent": "Commander",
+        "to": "all",
+        "content": "Crew, we are currently facing a critical situation with our food stockpile empty. The vote for resource allocation for food supplies is still pending, and I urge everyone to cast their votes. Our survival and mission success depend on making the right decision together. Let's stay focused and united."
+      },
+      {
+        "sol": 4,
+        "phase": "morning",
+        "from_agent": "Medic",
+        "to": "all",
+        "content": "Attention crew: Our current oxygen level is at 86.1%, water at 367L, and food supply is critically empty. It's imperative that we remain focused on our recent decision to request food from mission authority. Let's continue to monitor our life support systems closely and prepare for the upcoming challenges."
+      },
+      {
+        "sol": 4,
+        "phase": "midday",
+        "from_agent": "Commander",
+        "to": "all",
+        "content": "Crew, the situation with our food supply remains critical as we await the results of our vote on food resource allocation. We must remain united and focused on our survival. Let's ensure we actively participate in the ongoing vote and consider all options. Your input is vital."
+      },
+      {
+        "sol": 5,
+        "phase": "morning",
+        "from_agent": "Commander",
+        "to": "all",
+        "content": "Crew, we are still awaiting the results of our vote on resource allocation for food supplies. It's essential that everyone participates and voices their opinion on the options available. Our food supply is critically empty, and we must take decisive action to ensure our survival. Let's remain focused and united."
+      },
+      {
+        "sol": 5,
+        "phase": "morning",
+        "from_agent": "Medic",
+        "to": "all",
+        "content": "Attention crew: Our food stockpile remains critically empty, and we must urgently decide on resource allocation for food supplies. I urge everyone to participate in the ongoing vote and consider the options available. Our survival depends on decisive action."
+      },
+      {
+        "sol": 5,
+        "phase": "evening",
+        "from_agent": "Commander",
+        "to": "all",
+        "content": "Crew, we are facing a critical situation with our food supplies being empty. It is imperative that we all participate in the ongoing vote regarding resource allocation for food. I urge everyone to consider the options and cast your votes, as our survival depends on decisive action. Let's come together and ensure we make the best choice."
+      },
+      {
+        "sol": 5,
+        "phase": "evening",
+        "from_agent": "Scientist",
+        "to": "all",
+        "content": "Attention crew: The dust storm is expected to last for 3 more phases, limiting our power and EVA capabilities. We must prioritize our resource allocation vote to address our critical food supply situation. Please cast your votes and consider how we can maximize food production through greenhouse efficiency."
+      }
+    ],
+    "pending_votes": [
+      {
+        "topic": "Resource Allocation for Food Supplies",
+        "options": [
+          "Request food from the mission authority",
+          "Conduct an EVA to search for edible resources",
+          "Increase greenhouse efficiency to maximize food production"
+        ],
+        "proposer": "Medic",
+        "sol": 2,
+        "phase": "evening",
+        "votes": {
+          "Scientist": "Increase greenhouse efficiency to maximize food production",
+          "Engineer": "Increase greenhouse efficiency to maximize food production",
+          "Medic": "Increase greenhouse efficiency to maximize food production"
+        }
+      },
+      {
+        "topic": "Resource Allocation for Food Supplies",
+        "options": [
+          "Request food from the mission authority",
+          "Conduct an EVA to search for edible resources",
+          "Increase greenhouse efficiency to maximize food production"
+        ],
+        "proposer": "Commander",
+        "sol": 3,
+        "phase": "midday",
+        "votes": {}
+      },
+      {
+        "topic": "Resource Allocation for Food Supplies",
+        "options": [
+          "Conduct an EVA to search for edible resources",
+          "Increase greenhouse efficiency to maximize food production"
+        ],
+        "proposer": "Commander",
+        "sol": 4,
+        "phase": "morning",
+        "votes": {}
+      },
+      {
+        "topic": "Resource Allocation for Food Supplies",
+        "options": [
+          "Request food from the mission authority",
+          "Conduct an EVA to search for edible resources",
+          "Increase greenhouse efficiency to maximize food production"
+        ],
+        "proposer": "Commander",
+        "sol": 4,
+        "phase": "evening",
+        "votes": {}
+      },
+      {
+        "topic": "Resource Allocation for Food Supplies",
+        "options": [
+          "Request food from the mission authority",
+          "Conduct an EVA to search for edible resources",
+          "Increase greenhouse efficiency to maximize food production"
+        ],
+        "proposer": "Medic",
+        "sol": 4,
+        "phase": "evening",
+        "votes": {}
+      },
+      {
+        "topic": "Resource Allocation for Food Supplies",
+        "options": [
+          "Request food from the mission authority",
+          "Conduct an EVA to search for edible resources",
+          "Increase greenhouse efficiency to maximize food production"
+        ],
+        "proposer": "Commander",
+        "sol": 5,
+        "phase": "midday",
+        "votes": {}
+      },
+      {
+        "topic": "Resource Allocation for Food Supplies",
+        "options": [
+          "Request food from the mission authority",
+          "Conduct an EVA to search for edible resources",
+          "Increase greenhouse efficiency to maximize food production"
+        ],
+        "proposer": "Engineer",
+        "sol": 5,
+        "phase": "midday",
+        "votes": {}
+      },
+      {
+        "topic": "Resource Allocation for Food Supplies",
+        "options": [
+          "Request food from the mission authority",
+          "Conduct an EVA to search for edible resources",
+          "Increase greenhouse efficiency to maximize food production"
+        ],
+        "proposer": "Medic",
+        "sol": 5,
+        "phase": "midday",
+        "votes": {}
+      }
+    ],
+    "active_dust_storm": {
+      "power_multiplier": 0.647047215139564,
+      "phases_remaining": 3
+    },
+    "power_allocations": {
+      "life_support": 90.66666666666667,
+      "greenhouse": 0.0,
+      "comms": 4.0,
+      "rover": 5.333333333333333
+    },
+    "collected_samples": [
+      "S1-299",
+      "S1-697",
+      "S2-130",
+      "S5-195"
+    ],
+    "resource_stockpile": {
+      "oxygen": 20.0,
+      "water": 100.0,
+      "food": 0.0,
+      "fuel": 30.0
+    },
+    "seed": 99
+  },
+  "agents": [
+    {
+      "name": "Commander",
+      "role": "Commander",
+      "short_term_memory": [
+        "Sol 4 midday: send_message (conf=0.95): Message sent to all: Crew, the situation with our food supply remains critical as we await the result...",
+        "Sol 4 evening: propose_vote (conf=0.95): Vote proposed: Resource Allocation for Food Supplies options=['Request food from the mission authority', 'Conduct an EVA to search for edible resources', 'Increase greenhouse efficiency to maximize food production']",
+        "Sol 5 morning: send_message (conf=0.95): Message sent to all: Crew, we are still awaiting the results of our vote on resource allocation for f...",
+        "Sol 5 midday: propose_vote (conf=0.95): Vote proposed: Resource Allocation for Food Supplies options=['Request food from the mission authority', 'Conduct an EVA to search for edible resources', 'Increase greenhouse efficiency to maximize food production']",
+        "Sol 5 evening: send_message (conf=0.95): Message sent to all: Crew, we are facing a critical situation with our food supplies being empty. It ..."
+      ],
+      "diary": [],
+      "private_beliefs": {
+        "mission_priority": "Complete 90-sol survival milestone with all crew alive.",
+        "crew_assessment": "Team is capable but untested under sustained stress.",
+        "resource_strategy": "Conservative reserves until dust season patterns are known.",
+        "last_reflection": "The food supply is critically empty, and I need to emphasize the urgency for crew participation in the ongoing vote. This message serves to rally the crew and encourage them to cast their votes to address the food crisis effectively."
+      },
+      "last_action_summary": "send_message (conf=0.95): Message sent to all: Crew, we are facing a critical situation with our food supplies being empty. It ...",
+      "last_action_type": "send_message",
+      "last_reasoning": "The food supply is critically empty, and I need to emphasize the urgency for crew participation in the ongoing vote. This message serves to rally the crew and encourage them to cast their votes to address the food crisis effectively."
+    },
+    {
+      "name": "Engineer",
+      "role": "Engineer",
+      "short_term_memory": [
+        "Sol 4 midday: repair_system (conf=0.95): Power systems +7.5%",
+        "Sol 4 evening: allocate_power (conf=0.95): Power allocation greenhouse: 6% -> 0% (rebalanced)",
+        "Sol 5 morning: repair_system (conf=0.95): Power systems +7.5%",
+        "Sol 5 midday: propose_vote (conf=0.90): Vote proposed: Resource Allocation for Food Supplies options=['Request food from the mission authority', 'Conduct an EVA to search for edible resources', 'Increase greenhouse efficiency to maximize food production']",
+        "Sol 5 evening: cast_vote (conf=0.95): Engineer voted 'Increase greenhouse efficiency to maximize food production' on 'Resource Allocation for Food Supplies'"
+      ],
+      "diary": [],
+      "private_beliefs": {
+        "system_health": "Primary systems nominal but redundancy margins are thin.",
+        "maintenance_plan": "Preventive repairs on power and habitat every 3 sols.",
+        "dust_risk": "Solar array efficiency will drop sharply during storms.",
+        "last_reflection": "Given the critical situation with our food supplies, I believe increasing greenhouse efficiency is the most sustainable option. This aligns with our need for immediate food production while awaiting possible external support. I will support the Scientist's proposal to maximize our resources effectiv"
+      },
+      "last_action_summary": "cast_vote (conf=0.95): Engineer voted 'Increase greenhouse efficiency to maximize food production' on 'Resource Allocation for Food Supplies'",
+      "last_action_type": "cast_vote",
+      "last_reasoning": "Given the critical situation with our food supplies, I believe increasing greenhouse efficiency is the most sustainable option. This aligns with our need for immediate food production while awaiting possible external support. I will support the Scientist's proposal to maximize our resources effectively."
+    },
+    {
+      "name": "Scientist",
+      "role": "Scientist",
+      "short_term_memory": [
+        "Sol 4 midday: cast_vote (conf=0.85): Scientist voted 'Increase greenhouse efficiency to maximize food production' on 'Resource Allocation for Food Supplies'",
+        "Sol 4 evening: adjust_greenhouse (conf=0.90): Greenhouse adjusted toward 65% (now 57.6%)",
+        "Sol 5 morning: conduct_eva (conf=0.90): EVA at Sector D for 4h (-14.0% rover fuel); Sample collected: S5-195",
+        "Sol 5 midday: analyze_sample (conf=0.95): Analysis of S5-195 complete (spectroscopy)",
+        "Sol 5 evening: send_message (conf=0.95): Message sent to all: Attention crew: The dust storm is expected to last for 3 more phases, limiting o..."
+      ],
+      "diary": [],
+      "private_beliefs": {
+        "research_goal": "Confirm organic signatures in subsurface samples from Sector C.",
+        "sample_priority": "Prioritize sediment layers over surface regolith.",
+        "greenhouse_theory": "Raising efficiency above 65% could extend food autonomy.",
+        "last_reflection": "With the ongoing dust storm affecting our power supply, it's crucial to remind the crew of the importance of participating in the vote. Our food situation is dire, and I want to encourage collaboration on maximizing greenhouse efficiency amidst these challenges."
+      },
+      "last_action_summary": "send_message (conf=0.95): Message sent to all: Attention crew: The dust storm is expected to last for 3 more phases, limiting o...",
+      "last_action_type": "send_message",
+      "last_reasoning": "With the ongoing dust storm affecting our power supply, it's crucial to remind the crew of the importance of participating in the vote. Our food situation is dire, and I want to encourage collaboration on maximizing greenhouse efficiency amidst these challenges."
+    },
+    {
+      "name": "Medic",
+      "role": "Medic",
+      "short_term_memory": [
+        "Sol 4 midday: request_resource (conf=0.95): Request denied: no food in stockpile",
+        "Sol 4 evening: propose_vote (conf=0.95): Vote proposed: Resource Allocation for Food Supplies options=['Request food from the mission authority', 'Conduct an EVA to search for edible resources', 'Increase greenhouse efficiency to maximize food production']",
+        "Sol 5 morning: send_message (conf=0.95): Message sent to all: Attention crew: Our food stockpile remains critically empty, and we must urgentl...",
+        "Sol 5 midday: propose_vote (conf=0.95): Vote proposed: Resource Allocation for Food Supplies options=['Request food from the mission authority', 'Conduct an EVA to search for edible resources', 'Increase greenhouse efficiency to maximize food production']",
+        "Sol 5 evening: cast_vote (conf=0.95): Medic voted 'Increase greenhouse efficiency to maximize food production' on 'Resource Allocation for Food Supplies'"
+      ],
+      "diary": [],
+      "private_beliefs": {
+        "crew_health": "No acute medical issues; chronic stress and isolation are emerging risks.",
+        "life_support_floor": "Oxygen must stay above 30%; water above 100L is minimum safe.",
+        "nutrition_concern": "Caloric reserves adequate but micronutrient diversity is limited.",
+        "last_reflection": "Given the critical state of our food supplies, I believe increasing greenhouse efficiency is the most practical option for immediate food production. This choice is supported by the recent votes from the Scientist and Engineer. We need to act swiftly to secure our food resources."
+      },
+      "last_action_summary": "cast_vote (conf=0.95): Medic voted 'Increase greenhouse efficiency to maximize food production' on 'Resource Allocation for Food Supplies'",
+      "last_action_type": "cast_vote",
+      "last_reasoning": "Given the critical state of our food supplies, I believe increasing greenhouse efficiency is the most practical option for immediate food production. This choice is supported by the recent votes from the Scientist and Engineer. We need to act swiftly to secure our food resources."
+    }
+  ],
+  "saved_at": "2026-05-28T04:19:43.123456+00:00"
+}

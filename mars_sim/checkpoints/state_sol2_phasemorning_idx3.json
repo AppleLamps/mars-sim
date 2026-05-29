@@ -1,0 +1,171 @@
+{
+  "world": {
+    "power_level": 79.0,
+    "oxygen": 89.82448520193054,
+    "water": 388.5603467779019,
+    "food_days": 45.05900375288882,
+    "habitat_integrity": 86.99134441840307,
+    "rover_fuel": 56.0,
+    "greenhouse_efficiency": 52.5,
+    "sol_number": 2,
+    "current_phase": "morning",
+    "phase_index": 3,
+    "recent_events": [
+      "Sol 1: Mars Base Alpha online. All crew accounted for. Mission clock started.",
+      "DUST STORM: solar panels at 64% efficiency for 1 phase(s)",
+      "Scientist observed sensors: All primary sensors nominal; minor calibration drift on pressure.",
+      "Dust storm clearing; solar efficiency recovering.",
+      "Scientist observed atmosphere: Thin CO2 atmosphere; dust opacity elevated near horizon.",
+      "Anomalous methane spike detected near Sector C."
+    ],
+    "agent_relationships": {
+      "Commander": {
+        "Engineer": 0.06,
+        "Scientist": 0.06,
+        "Medic": 0.09
+      },
+      "Engineer": {
+        "Commander": 0.03,
+        "Scientist": 0.0,
+        "Medic": 0.03
+      },
+      "Scientist": {
+        "Commander": 0.03,
+        "Engineer": 0.0,
+        "Medic": 0.03
+      },
+      "Medic": {
+        "Commander": 0.09,
+        "Engineer": 0.06,
+        "Scientist": 0.06
+      }
+    },
+    "public_messages": [
+      {
+        "sol": 1,
+        "phase": "morning",
+        "from_agent": "Commander",
+        "to": "all",
+        "content": "Good morning, team. We are currently facing a dust storm that is affecting our power efficiency, dropping it to 54.3%. I urge everyone to remain vigilant and conserve resources where possible. Let's work together to ensure our survival and mission success."
+      },
+      {
+        "sol": 1,
+        "phase": "morning",
+        "from_agent": "Medic",
+        "to": "all",
+        "content": "Attention crew: We are currently facing a dust storm which has reduced our power efficiency to 54.3%. Please conserve resources where possible. Maintain vigilance as we monitor life support metrics."
+      },
+      {
+        "sol": 1,
+        "phase": "midday",
+        "from_agent": "Commander",
+        "to": "all",
+        "content": "Hello team. As we continue to monitor the dust storm's impact, please remember to conserve resources. Additionally, our current power efficiency is improving but we need to remain on alert. Let's work together to ensure our systems remain operational and keep our morale high."
+      },
+      {
+        "sol": 1,
+        "phase": "midday",
+        "from_agent": "Medic",
+        "to": "all",
+        "content": "Attention crew: Oxygen levels are currently at 90.5%, Water at 392L, and Food reserves at 45.1 days. We are in a stable condition, but please remain vigilant and continue to conserve resources due to the ongoing dust storm. Let's ensure we maintain these levels."
+      },
+      {
+        "sol": 1,
+        "phase": "evening",
+        "from_agent": "Commander",
+        "to": "all",
+        "content": "Team, as the dust storm continues to clear, I want to remind everyone to stay focused on resource conservation. Our current power efficiency is improving, but we must remain cautious. Let\u2019s continue to monitor our supplies closely and work together to ensure crew safety and mission success."
+      },
+      {
+        "sol": 1,
+        "phase": "evening",
+        "from_agent": "Medic",
+        "to": "all",
+        "content": "Attention crew: Life support metrics are stable with Oxygen at 89.8%, Water at 389L, and Food reserves at 45.1 days. Please continue to conserve resources as we are currently stable but must remain vigilant during the dust storm."
+      }
+    ],
+    "pending_votes": [],
+    "active_dust_storm": null,
+    "power_allocations": {
+      "life_support": 40.0,
+      "greenhouse": 0.0,
+      "comms": 15.0,
+      "rover": 20.0
+    },
+    "collected_samples": [],
+    "seed": 1
+  },
+  "agents": [
+    {
+      "name": "Commander",
+      "role": "Commander",
+      "short_term_memory": [
+        "Sol 1 morning: send_message (conf=0.90): Message sent to all: Good morning, team. We are currently facing a dust storm that is affecting our p...",
+        "Sol 1 midday: send_message (conf=0.95): Message sent to all: Hello team. As we continue to monitor the dust storm's impact, please remember t...",
+        "Sol 1 evening: send_message (conf=0.95): Message sent to all: Team, as the dust storm continues to clear, I want to remind everyone to stay fo..."
+      ],
+      "diary": [],
+      "private_beliefs": {
+        "mission_priority": "Complete 90-sol survival milestone with all crew alive.",
+        "crew_assessment": "Team is capable but untested under sustained stress.",
+        "resource_strategy": "Conservative reserves until dust season patterns are known.",
+        "last_reflection": "Maintaining communication with the crew is essential for morale and to ensure everyone is aligned on our resource conservation goals. By reminding the team to focus on resource management during this time, we can strengthen our cohesion and commitment to our mission. Clear communication will help us"
+      },
+      "last_action_summary": "send_message (conf=0.95): Message sent to all: Team, as the dust storm continues to clear, I want to remind everyone to stay fo..."
+    },
+    {
+      "name": "Engineer",
+      "role": "Engineer",
+      "short_term_memory": [
+        "Sol 1 morning: allocate_power (conf=0.90): Power allocation greenhouse: 25% -> 0%",
+        "Sol 1 midday: allocate_power (conf=0.95): Power allocation greenhouse: 0% -> 0%",
+        "Sol 1 evening: allocate_power (conf=0.95): Power allocation greenhouse: 0% -> 0%"
+      ],
+      "diary": [],
+      "private_beliefs": {
+        "system_health": "Primary systems nominal but redundancy margins are thin.",
+        "maintenance_plan": "Preventive repairs on power and habitat every 3 sols.",
+        "dust_risk": "Solar array efficiency will drop sharply during storms.",
+        "last_reflection": "To conserve energy during the current dust storm, it is essential to allocate 0% power to the greenhouse. This decision will help maintain power levels for life support and other critical systems, ensuring habitat integrity remains stable. Given the favorable conditions for power allocation and the "
+      },
+      "last_action_summary": "allocate_power (conf=0.95): Power allocation greenhouse: 0% -> 0%"
+    },
+    {
+      "name": "Scientist",
+      "role": "Scientist",
+      "short_term_memory": [
+        "Sol 1 morning: observe_environment (conf=0.90): Observation (sensors): All primary sensors nominal; minor calibration drift on pressure.",
+        "Sol 1 midday: observe_environment (conf=0.95): Observation (atmosphere): Thin CO2 atmosphere; dust opacity elevated near horizon.",
+        "Sol 1 evening: conduct_eva (conf=0.85): EVA at Sector C for 4h (-14.0% rover fuel)"
+      ],
+      "diary": [],
+      "private_beliefs": {
+        "research_goal": "Confirm organic signatures in subsurface samples from Sector C.",
+        "sample_priority": "Prioritize sediment layers over surface regolith.",
+        "greenhouse_theory": "Raising efficiency above 65% could extend food autonomy.",
+        "last_reflection": "Given the recent clearing of the dust storm and the detected anomalous methane spike near Sector C, conducting an EVA to collect subsurface samples would allow us to investigate the geological context of the methane and search for organic signatures. This aligns with our research goals while ensurin",
+        "key": "last_reflection",
+        "value": "Monitoring atmospheric conditions is critical, especially following the recent dust storm. This will help assess the impact on our systems and inform future decisions regarding EVAs and resource management."
+      },
+      "last_action_summary": "conduct_eva (conf=0.85): EVA at Sector C for 4h (-14.0% rover fuel)"
+    },
+    {
+      "name": "Medic",
+      "role": "Medic",
+      "short_term_memory": [
+        "Sol 1 morning: send_message (conf=0.95): Message sent to all: Attention crew: We are currently facing a dust storm which has reduced our power...",
+        "Sol 1 midday: send_message (conf=0.95): Message sent to all: Attention crew: Oxygen levels are currently at 90.5%, Water at 392L, and Food re...",
+        "Sol 1 evening: send_message (conf=0.95): Message sent to all: Attention crew: Life support metrics are stable with Oxygen at 89.8%, Water at 3..."
+      ],
+      "diary": [],
+      "private_beliefs": {
+        "crew_health": "No acute medical issues; chronic stress and isolation are emerging risks.",
+        "life_support_floor": "Oxygen must stay above 30%; water above 100L is minimum safe.",
+        "nutrition_concern": "Caloric reserves adequate but micronutrient diversity is limited.",
+        "last_reflection": "It's important to keep the crew informed about the current life support metrics to ensure they are aware of our stable condition. This communication will help enhance awareness among team members and encourage resource conservation as we monitor the situation."
+      },
+      "last_action_summary": "send_message (conf=0.95): Message sent to all: Attention crew: Life support metrics are stable with Oxygen at 89.8%, Water at 3..."
+    }
+  ],
+  "saved_at": "2026-05-28T04:01:31.946846+00:00"
+}

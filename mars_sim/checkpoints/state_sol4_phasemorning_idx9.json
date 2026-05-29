@@ -1,0 +1,274 @@
+{
+  "world": {
+    "power_level": 47.0,
+    "oxygen": 86.07493301751147,
+    "water": 367.46796703743337,
+    "food_days": 42.96405489359003,
+    "habitat_integrity": 90.33834182532017,
+    "rover_fuel": 14.0,
+    "greenhouse_efficiency": 55.0,
+    "sol_number": 4,
+    "current_phase": "morning",
+    "phase_index": 9,
+    "recent_events": [
+      "Sol 1: Mars Base Alpha online. All crew accounted for. Mission clock started.",
+      "EVA recovered sample S1-299 from Sector C.",
+      "DUST STORM: solar panels at 48% efficiency for 1 phase(s)",
+      "Scientist analyzed S1-299 via organic_signature_analysis: trace organics detected.",
+      "Dust storm clearing; solar efficiency recovering.",
+      "EVA recovered sample S1-697 from Sector C.",
+      "DUST STORM: solar panels at 55% efficiency for 1 phase(s)",
+      "Scientist analyzed S1-697 via organic_signature_analysis: trace organics detected.",
+      "Resource request DENIED: Medic requested 1.0 food, stockpile empty.",
+      "Dust storm clearing; solar efficiency recovering.",
+      "EVA recovered sample S2-130 from Sector C.",
+      "Scientist analyzed S2-130 via organic_signature_analysis: trace organics detected.",
+      "Vote resolved: 'Resource Allocation for Food Supplies' -> Request food from the mission authority ({'Request food from the mission authority': 2, 'Conduct an EVA to search for edible resources': 1, 'Increase greenhouse efficiency to maximize food production': 0})",
+      "Radiation monitor flagged brief spike during midday.",
+      "Resource request DENIED: Engineer requested 50.0 food, stockpile empty.",
+      "Vote resolved: 'Resource Allocation for Food Supplies' -> Request food from the mission authority ({'Request food from the mission authority': 1, 'Conduct an EVA to search for edible resources': 1, 'Increase greenhouse efficiency to maximize food production': 0})",
+      "DUST STORM: solar panels at 63% efficiency for 3 phase(s)",
+      "Scientist observed sensors: All primary sensors nominal; minor calibration drift on pressure."
+    ],
+    "agent_relationships": {
+      "Commander": {
+        "Engineer": 0.1,
+        "Scientist": 0.1,
+        "Medic": 0.165
+      },
+      "Engineer": {
+        "Commander": 0.05,
+        "Scientist": 0.0,
+        "Medic": 0.05
+      },
+      "Scientist": {
+        "Commander": 0.05,
+        "Engineer": 0.0,
+        "Medic": 0.05
+      },
+      "Medic": {
+        "Commander": 0.18,
+        "Engineer": 0.1,
+        "Scientist": 0.1
+      }
+    },
+    "public_messages": [
+      {
+        "sol": 1,
+        "phase": "morning",
+        "from_agent": "Commander",
+        "to": "all",
+        "content": "Good morning, team! We are on Sol 1 with all systems functioning within acceptable ranges. Currently, we have 91.7% oxygen and 44.8 days of food. Let's stay vigilant and work together to ensure our survival and mission success."
+      },
+      {
+        "sol": 1,
+        "phase": "morning",
+        "from_agent": "Medic",
+        "to": "all",
+        "content": "All systems are currently operational with oxygen at 91.7%, water at 398L, and food reserves sufficient for 44.8 days. Let's remain vigilant and proactive in monitoring our resources as we progress through the mission."
+      },
+      {
+        "sol": 1,
+        "phase": "evening",
+        "from_agent": "Commander",
+        "to": "all",
+        "content": "Team, we are currently well within acceptable resource ranges, but it's essential to stay focused. Let's continue monitoring our supplies and prepare for any potential challenges ahead. Remember, our priority is to ensure crew survival and mission success. Stay vigilant!"
+      },
+      {
+        "sol": 1,
+        "phase": "evening",
+        "from_agent": "Medic",
+        "to": "all",
+        "content": "As we continue our operations, I want to remind everyone that our current oxygen levels are good at 91.5%, water is ample at 392L, and food reserves are sufficient for 45.1 days. Let's keep monitoring our resources closely and remain vigilant."
+      },
+      {
+        "sol": 2,
+        "phase": "midday",
+        "from_agent": "Commander",
+        "to": "all",
+        "content": "Team, we are currently in a stable condition with our resources. Oxygen is at 90.1%, water at 385L, and food is at 44.5 days. Let's maintain this momentum and continue monitoring our supplies closely. Stay vigilant and work together!"
+      },
+      {
+        "sol": 2,
+        "phase": "midday",
+        "from_agent": "Medic",
+        "to": "all",
+        "content": "Attention crew: Resources are currently stable with oxygen at 90.1%, water at 385L, and food at 44.5 days. However, we must remain vigilant as our food stockpile is empty. I will continue advocating for food resources and monitor our supplies closely."
+      },
+      {
+        "sol": 3,
+        "phase": "morning",
+        "from_agent": "Commander",
+        "to": "all",
+        "content": "Crew, we currently have no food in stock, and it's critical we address this soon. The vote on food resource allocation is still pending, and I encourage everyone to participate. Let's prioritize our survival and mission continuity by making a well-informed decision."
+      },
+      {
+        "sol": 3,
+        "phase": "midday",
+        "from_agent": "Medic",
+        "to": "all",
+        "content": "Attention crew: Our food stockpile is currently empty, and we are in a critical situation. I urge everyone to remain focused on our previous decision to request food from mission authority. Let's continue to monitor our oxygen and water levels closely, and prepare for any necessary actions."
+      },
+      {
+        "sol": 3,
+        "phase": "evening",
+        "from_agent": "Commander",
+        "to": "all",
+        "content": "Crew, we are currently facing a critical situation with our food stockpile empty. The vote for resource allocation for food supplies is still pending, and I urge everyone to cast their votes. Our survival and mission success depend on making the right decision together. Let's stay focused and united."
+      },
+      {
+        "sol": 4,
+        "phase": "morning",
+        "from_agent": "Medic",
+        "to": "all",
+        "content": "Attention crew: Our current oxygen level is at 86.1%, water at 367L, and food supply is critically empty. It's imperative that we remain focused on our recent decision to request food from mission authority. Let's continue to monitor our life support systems closely and prepare for the upcoming challenges."
+      }
+    ],
+    "pending_votes": [
+      {
+        "topic": "Resource Allocation for Food Supplies",
+        "options": [
+          "Request food from the mission authority",
+          "Conduct an EVA to search for edible resources",
+          "Increase greenhouse efficiency to maximize food production"
+        ],
+        "proposer": "Medic",
+        "sol": 2,
+        "phase": "evening",
+        "votes": {}
+      },
+      {
+        "topic": "Resource Allocation for Food Supplies",
+        "options": [
+          "Request food from the mission authority",
+          "Conduct an EVA to search for edible resources",
+          "Increase greenhouse efficiency to maximize food production"
+        ],
+        "proposer": "Commander",
+        "sol": 3,
+        "phase": "midday",
+        "votes": {}
+      },
+      {
+        "topic": "Resource Allocation for Food Supplies",
+        "options": [
+          "Conduct an EVA to search for edible resources",
+          "Increase greenhouse efficiency to maximize food production"
+        ],
+        "proposer": "Commander",
+        "sol": 4,
+        "phase": "morning",
+        "votes": {}
+      }
+    ],
+    "active_dust_storm": {
+      "power_multiplier": 0.6262537452130063,
+      "phases_remaining": 3
+    },
+    "power_allocations": {
+      "life_support": 85.0,
+      "greenhouse": 6.249999999999999,
+      "comms": 3.75,
+      "rover": 5.0
+    },
+    "collected_samples": [
+      "S1-299",
+      "S1-697",
+      "S2-130"
+    ],
+    "resource_stockpile": {
+      "oxygen": 20.0,
+      "water": 100.0,
+      "food": 0.0,
+      "fuel": 30.0
+    },
+    "seed": 99
+  },
+  "agents": [
+    {
+      "name": "Commander",
+      "role": "Commander",
+      "short_term_memory": [
+        "Sol 2 evening: propose_vote (conf=0.95): Vote proposed: Resource Allocation for Food Supplies options=['Request food from the mission authority', 'Conduct an EVA to search for edible resources', 'Increase greenhouse efficiency to maximize food production']",
+        "Sol 3 morning: send_message (conf=0.95): Message sent to all: Crew, we currently have no food in stock, and it's critical we address this soon...",
+        "Sol 3 midday: propose_vote (conf=0.95): Vote proposed: Resource Allocation for Food Supplies options=['Request food from the mission authority', 'Conduct an EVA to search for edible resources', 'Increase greenhouse efficiency to maximize food production']",
+        "Sol 3 evening: send_message (conf=0.95): Message sent to all: Crew, we are currently facing a critical situation with our food stockpile empty...",
+        "Sol 4 morning: propose_vote (conf=0.95): Vote proposed: Resource Allocation for Food Supplies options=['Conduct an EVA to search for edible resources', 'Increase greenhouse efficiency to maximize food production']"
+      ],
+      "diary": [],
+      "private_beliefs": {
+        "mission_priority": "Complete 90-sol survival milestone with all crew alive.",
+        "crew_assessment": "Team is capable but untested under sustained stress.",
+        "resource_strategy": "Conservative reserves until dust season patterns are known.",
+        "last_reflection": "Given that we have received a denial for food request from mission authority and our food stockpile is empty, we must explore alternative solutions. Conducting an EVA may yield immediate results, while increasing greenhouse efficiency could provide a longer-term solution. We need to act quickly to e"
+      },
+      "last_action_summary": "propose_vote (conf=0.95): Vote proposed: Resource Allocation for Food Supplies options=['Conduct an EVA to search for edible resources', 'Increase greenhouse efficiency to maximize food production']",
+      "last_action_type": "propose_vote",
+      "last_reasoning": "Given that we have received a denial for food request from mission authority and our food stockpile is empty, we must explore alternative solutions. Conducting an EVA may yield immediate results, while increasing greenhouse efficiency could provide a longer-term solution. We need to act quickly to ensure crew survival and mission continuity."
+    },
+    {
+      "name": "Engineer",
+      "role": "Engineer",
+      "short_term_memory": [
+        "Sol 2 evening: propose_vote (conf=0.95): Vote proposed: Resource Allocation for Food Supplies options=['Request food from the mission authority', 'Conduct an EVA to search for edible resources', 'Increase greenhouse efficiency to maximize food production']",
+        "Sol 3 morning: cast_vote (conf=0.95): Engineer voted 'Request food from the mission authority' on 'Resource Allocation for Food Supplies'",
+        "Sol 3 midday: request_resource (conf=0.95): Request denied: no food in stockpile",
+        "Sol 3 evening: repair_system (conf=0.95): Power systems +3.0%",
+        "Sol 4 morning: allocate_power (conf=0.95): Power allocation life_support: 80% -> 85% (rebalanced)"
+      ],
+      "diary": [],
+      "private_beliefs": {
+        "system_health": "Primary systems nominal but redundancy margins are thin.",
+        "maintenance_plan": "Preventive repairs on power and habitat every 3 sols.",
+        "dust_risk": "Solar array efficiency will drop sharply during storms.",
+        "last_reflection": "With the power efficiency reduced due to the ongoing dust storm, it's critical to maintain life support systems. Allocating more power towards life support will ensure crew safety while we manage the power constraints. This adjustment prioritizes the most vital subsystem during this phase."
+      },
+      "last_action_summary": "allocate_power (conf=0.95): Power allocation life_support: 80% -> 85% (rebalanced)",
+      "last_action_type": "allocate_power",
+      "last_reasoning": "With the power efficiency reduced due to the ongoing dust storm, it's critical to maintain life support systems. Allocating more power towards life support will ensure crew safety while we manage the power constraints. This adjustment prioritizes the most vital subsystem during this phase."
+    },
+    {
+      "name": "Scientist",
+      "role": "Scientist",
+      "short_term_memory": [
+        "Sol 2 evening: analyze_sample (conf=0.95): Analysis of S2-130 complete (organic_signature_analysis)",
+        "Sol 3 morning: cast_vote (conf=0.85): Scientist voted 'Conduct an EVA to search for edible resources' on 'Resource Allocation for Food Supplies'",
+        "Sol 3 midday: conduct_eva (conf=0.90): EVA at Sector D for 4h (-14.0% rover fuel)",
+        "Sol 3 evening: cast_vote (conf=0.85): Scientist voted 'Conduct an EVA to search for edible resources' on 'Resource Allocation for Food Supplies'",
+        "Sol 4 morning: observe_environment (conf=0.95): Observation (sensors): All primary sensors nominal; minor calibration drift on pressure."
+      ],
+      "diary": [],
+      "private_beliefs": {
+        "research_goal": "Confirm organic signatures in subsurface samples from Sector C.",
+        "sample_priority": "Prioritize sediment layers over surface regolith.",
+        "greenhouse_theory": "Raising efficiency above 65% could extend food autonomy.",
+        "last_reflection": "Given the active dust storm and its impact on our power efficiency, it's crucial to monitor the sensor data for any anomalies or changes in conditions. This will help us make informed decisions about our next steps and ensure crew safety amidst the environmental challenges."
+      },
+      "last_action_summary": "observe_environment (conf=0.95): Observation (sensors): All primary sensors nominal; minor calibration drift on pressure.",
+      "last_action_type": "observe_environment",
+      "last_reasoning": "Given the active dust storm and its impact on our power efficiency, it's crucial to monitor the sensor data for any anomalies or changes in conditions. This will help us make informed decisions about our next steps and ensure crew safety amidst the environmental challenges."
+    },
+    {
+      "name": "Medic",
+      "role": "Medic",
+      "short_term_memory": [
+        "Sol 2 evening: propose_vote (conf=0.95): Vote proposed: Resource Allocation for Food Supplies options=['Request food from the mission authority', 'Conduct an EVA to search for edible resources', 'Increase greenhouse efficiency to maximize food production']",
+        "Sol 3 morning: cast_vote (conf=0.95): Medic voted 'Request food from the mission authority' on 'Resource Allocation for Food Supplies'",
+        "Sol 3 midday: send_message (conf=0.95): Message sent to all: Attention crew: Our food stockpile is currently empty, and we are in a critical ...",
+        "Sol 3 evening: cast_vote (conf=0.95): Medic voted 'Request food from the mission authority' on 'Resource Allocation for Food Supplies'",
+        "Sol 4 morning: send_message (conf=0.95): Message sent to all: Attention crew: Our current oxygen level is at 86.1%, water at 367L, and food su..."
+      ],
+      "diary": [],
+      "private_beliefs": {
+        "crew_health": "No acute medical issues; chronic stress and isolation are emerging risks.",
+        "life_support_floor": "Oxygen must stay above 30%; water above 100L is minimum safe.",
+        "nutrition_concern": "Caloric reserves adequate but micronutrient diversity is limited.",
+        "last_reflection": "With the food supply empty, it's crucial to keep the crew informed about our situation and remind them of our course of action. This will help maintain morale and ensure everyone is aligned on the priorities. Additionally, it reinforces the necessity of monitoring life support systems."
+      },
+      "last_action_summary": "send_message (conf=0.95): Message sent to all: Attention crew: Our current oxygen level is at 86.1%, water at 367L, and food su...",
+      "last_action_type": "send_message",
+      "last_reasoning": "With the food supply empty, it's crucial to keep the crew informed about our situation and remind them of our course of action. This will help maintain morale and ensure everyone is aligned on the priorities. Additionally, it reinforces the necessity of monitoring life support systems."
+    }
+  ],
+  "saved_at": "2026-05-28T04:18:23.990229+00:00"
+}
