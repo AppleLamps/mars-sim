@@ -1,0 +1,423 @@
+{
+  "world": {
+    "power_level": 54.18811028449521,
+    "oxygen": 55.044114066377894,
+    "water": 196.86838582123227,
+    "food_days": 26.31254516025751,
+    "habitat_integrity": 92.2219010012417,
+    "rover_fuel": 56.0,
+    "greenhouse_efficiency": 74.71723605932897,
+    "sol_number": 22,
+    "current_phase": "evening",
+    "phase_index": 65,
+    "recent_events": [
+      "Dust storm clearing; solar efficiency recovering.",
+      "Radiation monitor flagged brief spike during midday.",
+      "DUST STORM: solar panels at 47% efficiency for 1 phase(s)",
+      "Scientist observed sensors: All primary sensors nominal; minor calibration drift on pressure.",
+      "Dust storm clearing; solar efficiency recovering.",
+      "DUST STORM: solar panels at 68% efficiency for 1 phase(s)",
+      "Dust storm clearing; solar efficiency recovering.",
+      "DUST STORM: solar panels at 54% efficiency for 1 phase(s)",
+      "Dust storm clearing; solar efficiency recovering.",
+      "Atmospheric pressure reading drifted 0.3% from baseline.",
+      "Commander observed sensors: All primary sensors nominal; minor calibration drift on pressure.",
+      "Scientist observed geology: Basaltic regolith with layered sediment deposits visible.",
+      "EVA recovered sample S20-217 from Sector C.",
+      "Engineer observed sensors: All primary sensors nominal; minor calibration drift on pressure.",
+      "Scientist analyzed S20-217 via spectroscopic_analysis: trace organics detected.",
+      "Scientist analyzed S20-217 via chromatography: trace organics detected.",
+      "Engineer observed sensors: All primary sensors nominal; minor calibration drift on pressure.",
+      "Scientist analyzed S20-217 via mass_spectrometry: trace organics detected.",
+      "Commander observed crew: Crew fatigue moderate; morale stable but resource anxiety rising.",
+      "Scientist observed geology: Basaltic regolith with layered sediment deposits visible."
+    ],
+    "agent_relationships": {
+      "Commander": {
+        "Engineer": 0.185,
+        "Scientist": 0.16999999999999998,
+        "Medic": 0.16
+      },
+      "Engineer": {
+        "Commander": 0.13,
+        "Scientist": 0.01,
+        "Medic": 0.0
+      },
+      "Scientist": {
+        "Commander": 0.09999999999999999,
+        "Engineer": 0.02,
+        "Medic": 0.02
+      },
+      "Medic": {
+        "Commander": 0.08,
+        "Engineer": 0.0,
+        "Scientist": 0.01
+      }
+    },
+    "public_messages": [
+      {
+        "sol": 5,
+        "phase": "evening",
+        "from_agent": "Commander",
+        "to": "all",
+        "content": "Attention crew, the dust storm is impacting our power generation. I am prioritizing life support and monitoring status. Please remain vigilant and report any anomalies in your respective sectors."
+      },
+      {
+        "sol": 6,
+        "phase": "morning",
+        "from_agent": "Scientist",
+        "to": "all",
+        "content": "The recent methane spike in Sector C is intriguing given the atmospheric pressure drift. I am prioritizing monitoring this anomaly closely as the storm subsides to investigate potential organic signatures."
+      },
+      {
+        "sol": 10,
+        "phase": "midday",
+        "from_agent": "Commander",
+        "to": "all",
+        "content": "Attention team. Effective power remains low due to the dust storm, currently at 30.5%. We must maintain strict power discipline. Scientist, please continue monitoring the atmospheric sensors for any changes in the pressure drift. Everyone, keep focus on mission safety."
+      },
+      {
+        "sol": 15,
+        "phase": "morning",
+        "from_agent": "Commander",
+        "to": "all",
+        "content": "Attention crew. The dust storm is clearing, but our effective power remains critically low at 47.1%. I am maintaining the current restrictive power allocation to ensure life support stability. Let's remain focused on conservation until we are back to full capacity."
+      },
+      {
+        "sol": 17,
+        "phase": "morning",
+        "from_agent": "Commander",
+        "to": "all",
+        "content": "Attention crew. The dust storm is finally clearing and power generation will soon recover. Please inspect your systems for any post-storm wear; we need to ensure habitat integrity remains stable as we return to normal operations."
+      },
+      {
+        "sol": 19,
+        "phase": "morning",
+        "from_agent": "Commander",
+        "to": "all",
+        "content": "The dust storm is dissipating and power generation is recovering. I am authorizing a gradual increase in greenhouse power to restore our food production cycle. Please conduct a full system diagnostic to ensure no long-term damage was sustained during the storm."
+      },
+      {
+        "sol": 20,
+        "phase": "midday",
+        "from_agent": "Commander",
+        "to": "all",
+        "content": "Attention crew. With power levels stabilizing at 83.7%, we are transitioning out of high-alert conservation. I am increasing greenhouse efficiency to prioritize food production. Please continue routine maintenance checks to ensure we are fully prepared for the remainder of the mission."
+      },
+      {
+        "sol": 21,
+        "phase": "evening",
+        "from_agent": "Commander",
+        "to": "all",
+        "content": "Attention crew. With our metrics currently stable and power levels holding at 55.6%, we are in a good position to focus on long-term sustainability. I am satisfied with the scientific progress on sample S20-217. Let us continue with routine maintenance to ensure we reach the 90-sol milestone safely."
+      },
+      {
+        "sol": 22,
+        "phase": "midday",
+        "from_agent": "Commander",
+        "to": "all",
+        "content": "Attention crew. Our mission status remains stable. I want to acknowledge the hard work you have put in during the recent dust storms. To address rising resource anxiety, I will be holding a briefing tomorrow to review our long-term projections and ensure everyone feels confident in our supply levels."
+      },
+      {
+        "sol": 22,
+        "phase": "midday",
+        "from_agent": "Engineer",
+        "to": "Commander",
+        "content": "Commander, I have completed the power grid diagnostic and minor repairs. With power levels currently at 54.5%, I recommend we maintain current allocations to ensure stability while keeping a buffer for unexpected atmospheric shifts. I am ready to support your briefing tomorrow with updated hardware status reports."
+      }
+    ],
+    "pending_votes": [],
+    "active_dust_storm": null,
+    "power_allocations": {
+      "life_support": 61.75,
+      "greenhouse": 35.0,
+      "comms": 1.3928571428571437,
+      "rover": 1.8571428571428588
+    },
+    "collected_samples": [
+      "S20-217"
+    ],
+    "resource_stockpile": {
+      "oxygen": 20.0,
+      "water": 100.0,
+      "food": 10.0,
+      "fuel": 30.0
+    },
+    "last_vote_proposal_phase": {},
+    "seed": 1,
+    "config": {
+      "dust_storm_chance": 0.15,
+      "dust_multiplier_min": 0.3,
+      "dust_multiplier_max": 0.7,
+      "dust_duration_min": 1,
+      "dust_duration_max": 3,
+      "o2_loss_min": 0.3,
+      "o2_loss_max": 0.8,
+      "water_loss_min": 2.0,
+      "water_loss_max": 5.0,
+      "food_loss_min": 0.2,
+      "food_loss_max": 0.4,
+      "integrity_loss_min": 0.2,
+      "integrity_loss_max": 0.5,
+      "isru_power_floor": 30.0,
+      "isru_ls_alloc_floor": 25.0,
+      "isru_o2_base": 0.15,
+      "isru_water_base": 0.5,
+      "greenhouse_food_factor": 0.1,
+      "anomaly_chance": 0.08,
+      "repair_boost_low": 1.0,
+      "repair_boost_medium": 2.5,
+      "repair_boost_high": 5.0,
+      "repair_power_low": 2.0,
+      "repair_power_medium": 5.0,
+      "repair_power_high": 10.0,
+      "eva_fuel_per_hour": 3.5,
+      "eva_power_per_hour": 1.5,
+      "eva_sample_chance": 0.6,
+      "eva_incident_chance": 0.15,
+      "rover_fuel_eva_floor": 10.0,
+      "dust_eva_severity_floor": 0.5,
+      "coupling_power_threshold": 50.0,
+      "coupling_min_factor": 0.5,
+      "vote_proposal_cooldown_phases": 3,
+      "fast_path_enabled": true,
+      "fast_path_o2_floor": 60.0,
+      "fast_path_water_floor": 200.0,
+      "fast_path_food_floor": 20.0,
+      "fast_path_power_floor": 60.0,
+      "fast_path_integrity_floor": 60.0
+    }
+  },
+  "agents": [
+    {
+      "name": "Commander",
+      "role": "Commander",
+      "short_term_memory": [
+        "Sol 21 morning: adjust_greenhouse (conf=0.95): Greenhouse adjusted toward 85% (now 72.6%)",
+        "Sol 21 midday: write_diary (conf=0.95): Diary entry recorded (249 chars)",
+        "Sol 21 evening: send_message (conf=0.95): Message sent to all: Attention crew. With our metrics currently stable and power levels holding at 55...",
+        "Sol 22 morning: observe_environment (conf=0.95): Observation (crew): Crew fatigue moderate; morale stable but resource anxiety rising.",
+        "Sol 22 midday: send_message (conf=0.95): Message sent to all: Attention crew. Our mission status remains stable. I want to acknowledge the har..."
+      ],
+      "diary": [
+        {
+          "sol": 21,
+          "phase": "midday",
+          "entry": "The detection of trace organics in sample S20-217 is a significant mission milestone. I need to maintain crew focus while we investigate these findings further, ensuring we don't neglect routine maintenance as we push for deeper scientific analysis.",
+          "timestamp": "2026-05-29T07:10:58.417264+00:00"
+        }
+      ],
+      "private_beliefs": {
+        "mission_priority": "Complete 90-sol survival milestone with all crew alive.",
+        "crew_assessment": "Team is capable but untested under sustained stress.",
+        "resource_strategy": "Conservative reserves until dust season patterns are known.",
+        "last_reflection": "The crew's morale is stable but resource anxiety is rising according to my latest observation. Acknowledging their efforts and promising transparency regarding our supplies will help maintain cohesion and mitigate stress before it impacts performance.",
+        "methane_monitor": "active",
+        "scientific_potential": "high",
+        "crew_morale": "stable"
+      },
+      "last_action_summary": "send_message (conf=0.95): Message sent to all: Attention crew. Our mission status remains stable. I want to acknowledge the har...",
+      "last_action_type": "send_message",
+      "last_reasoning": "The crew's morale is stable but resource anxiety is rising according to my latest observation. Acknowledging their efforts and promising transparency regarding our supplies will help maintain cohesion and mitigate stress before it impacts performance.",
+      "last_action_deltas": [
+        "Message sent to all: Attention crew. Our mission status remains stable. I want to acknowledge the har..."
+      ]
+    },
+    {
+      "name": "Engineer",
+      "role": "Engineer",
+      "short_term_memory": [
+        "Sol 21 morning: repair_system (conf=0.90): Habitat integrity +5.0%",
+        "Sol 21 midday: observe_environment (conf=0.95): Observation (sensors): All primary sensors nominal; minor calibration drift on pressure.",
+        "Sol 21 evening: repair_system (conf=0.95): Habitat integrity +2.0%",
+        "Sol 22 morning: repair_system (conf=0.85): Power systems +3.0%",
+        "Sol 22 midday: send_message (conf=0.95): Message sent to Commander: Commander, I have completed the power grid diagnostic and minor repairs. With po..."
+      ],
+      "diary": [],
+      "private_beliefs": {
+        "system_health": "nominal",
+        "maintenance_plan": "completed_habitat_check",
+        "dust_risk": "Solar array efficiency will drop sharply during storms.",
+        "last_reflection": "Since I have been focusing on repairs for the last three sols, I am shifting to communication to support the Commander's upcoming resource briefing. This maintains crew morale and ensures the Commander has the necessary technical data for the meeting."
+      },
+      "last_action_summary": "send_message (conf=0.95): Message sent to Commander: Commander, I have completed the power grid diagnostic and minor repairs. With po...",
+      "last_action_type": "send_message",
+      "last_reasoning": "Since I have been focusing on repairs for the last three sols, I am shifting to communication to support the Commander's upcoming resource briefing. This maintains crew morale and ensures the Commander has the necessary technical data for the meeting.",
+      "last_action_deltas": [
+        "Message sent to Commander: Commander, I have completed the power grid diagnostic and minor repairs. With po..."
+      ]
+    },
+    {
+      "name": "Scientist",
+      "role": "Scientist",
+      "short_term_memory": [
+        "Sol 21 morning: analyze_sample (conf=0.95): Analysis of S20-217 complete (chromatography)",
+        "Sol 21 midday: analyze_sample (conf=0.95): Analysis of S20-217 complete (mass_spectrometry)",
+        "Sol 21 evening: adjust_greenhouse (conf=0.95): Greenhouse adjusted toward 75% (now 73.3%)",
+        "Sol 22 morning: observe_environment (conf=0.95): Observation (geology): Basaltic regolith with layered sediment deposits visible.",
+        "Sol 22 midday: adjust_greenhouse (conf=0.90): Greenhouse adjusted toward 78% (now 74.7%)"
+      ],
+      "diary": [],
+      "private_beliefs": {
+        "research_goal": "Confirm organic signatures in subsurface samples from Sector C.",
+        "sample_priority": "Prioritize sediment layers over surface regolith.",
+        "greenhouse_theory": "Raising efficiency above 65% could extend food autonomy.",
+        "storm_impact_awareness": "high",
+        "last_reflection": "The greenhouse efficiency is currently at 73.3%. Increasing it to 78% aligns with my belief that higher efficiency improves long-term food autonomy, especially given the commander's focus on resource stability.",
+        "methane_monitor": "active"
+      },
+      "last_action_summary": "adjust_greenhouse (conf=0.90): Greenhouse adjusted toward 78% (now 74.7%)",
+      "last_action_type": "adjust_greenhouse",
+      "last_reasoning": "The greenhouse efficiency is currently at 73.3%. Increasing it to 78% aligns with my belief that higher efficiency improves long-term food autonomy, especially given the commander's focus on resource stability.",
+      "last_action_deltas": [
+        "Greenhouse adjusted toward 78% (now 74.7%)"
+      ]
+    },
+    {
+      "name": "Medic",
+      "role": "Medic",
+      "short_term_memory": [
+        "Sol 21 morning: write_diary (conf=0.95): Diary entry recorded (373 chars)",
+        "Sol 21 midday: write_diary (conf=0.95): Diary entry recorded (346 chars)",
+        "Sol 21 evening: write_diary (conf=0.95): Diary entry recorded (256 chars)",
+        "Sol 22 morning: write_diary (conf=0.95): Diary entry recorded (285 chars)",
+        "Sol 22 midday: write_diary (conf=1.00): Diary entry recorded (326 chars)"
+      ],
+      "diary": [
+        {
+          "sol": 1,
+          "phase": "morning",
+          "entry": "Sol 1 start. Life support metrics are stable, but the dust storm is impacting power efficiency. I will keep a close watch on crew stress levels and ensure our resource management remains conservative given the isolation.",
+          "timestamp": "2026-05-29T07:09:49.179925+00:00"
+        },
+        {
+          "sol": 5,
+          "phase": "evening",
+          "entry": "The dust storm is beginning to wane, and our life support systems remain stable. I am keeping a close watch on the crew's physical condition as the pressure drift mentioned by the Scientist could impact long-term fatigue levels. Current reserves are sufficient, but I will continue to prioritize energy for life support until the storm fully clears.",
+          "timestamp": "2026-05-29T07:10:01.131158+00:00"
+        },
+        {
+          "sol": 6,
+          "phase": "morning",
+          "entry": "Sol 6 morning. The dust storm continues to strain our power grid, though life support remains stable. I am monitoring the crew for any respiratory issues due to the pressure drift, but all vitals are currently within normal range. I remain concerned about our long-term micronutrient diversity, but for now, we have enough food to sustain us through the storm.",
+          "timestamp": "2026-05-29T07:10:04.883847+00:00"
+        },
+        {
+          "sol": 10,
+          "phase": "morning",
+          "entry": "The dust storm continues to strain our power grid, though life support remains stable at 77.6% oxygen. I am keeping a close watch on the crew's physical condition as the restricted power limits greenhouse output, potentially affecting long-term nutritional variety. I will continue to prioritize life support systems while we wait for the solar efficiency to return to baseline.",
+          "timestamp": "2026-05-29T07:10:08.742971+00:00"
+        },
+        {
+          "sol": 10,
+          "phase": "midday",
+          "entry": "Sol 10 midday. Effective power is critical at 31.3% due to the dust storm. Crew health remains stable, but we must maintain strict power discipline to ensure life support systems stay operational. I am monitoring oxygen, water, and food levels closely; current reserves are within safety margins, but we cannot afford any system failures during this period.",
+          "timestamp": "2026-05-29T07:10:12.828671+00:00"
+        },
+        {
+          "sol": 10,
+          "phase": "evening",
+          "entry": "Sol 10 evening. Dust storm persists but solar efficiency should recover soon. Current oxygen at 75.8% and water at 306L are well within safe thresholds, though we must remain vigilant as effective power remains critically low at 30.5%. Crew health remains stable, but I will continue monitoring micronutrient intake closely.",
+          "timestamp": "2026-05-29T07:10:16.471496+00:00"
+        },
+        {
+          "sol": 11,
+          "phase": "midday",
+          "entry": "Sol 11 midday. Power levels remain critically low due to the lingering dust storm, though solar efficiency is showing signs of recovery. Crew health remains stable, but I am closely monitoring the oxygen and water consumption rates to ensure we do not dip below safety thresholds. I will continue to advocate for strict power management until the storm fully passes.",
+          "timestamp": "2026-05-29T07:10:20.427751+00:00"
+        },
+        {
+          "sol": 11,
+          "phase": "evening",
+          "entry": "Sol 11 evening. The dust storm persists, keeping our effective power at a critical low. Life support remains stable, but I am monitoring the crew for signs of stress due to the prolonged confinement and power rationing. Nutrition is sufficient for now, but I will need to push for greenhouse activation once power levels stabilize.",
+          "timestamp": "2026-05-29T07:10:24.181279+00:00"
+        },
+        {
+          "sol": 15,
+          "phase": "morning",
+          "entry": "Sol 15. Power remains critically low despite the storm clearing. I have verified that oxygen and water levels are stable for now, but we must prioritize maintenance once power stabilizes. I am monitoring the crew for any signs of fatigue due to the power restrictions.",
+          "timestamp": "2026-05-29T07:10:28.408825+00:00"
+        },
+        {
+          "sol": 17,
+          "phase": "morning",
+          "entry": "The dust storm is finally subsiding, which is a relief for our power reserves. While life support metrics are currently stable, I am concerned about long-term micronutrient depletion in our rations and will continue to monitor the crew's physical health closely as we emerge from this period of power conservation.",
+          "timestamp": "2026-05-29T07:10:32.686858+00:00"
+        },
+        {
+          "sol": 19,
+          "phase": "morning",
+          "entry": "Sol 19 morning. The dust storm is finally clearing, and power levels are starting to stabilize. While oxygen at 61.5% and water at 232L are safe, I remain cautious about our food reserves of 28.7 days. I will monitor the crew's health closely as we resume normal operations, ensuring no lingering effects from the recent radiation spike.",
+          "timestamp": "2026-05-29T07:10:36.707484+00:00"
+        },
+        {
+          "sol": 19,
+          "phase": "evening",
+          "entry": "Sol 19 evening. The dust storm is finally subsiding, but our effective power remains below 50%. I am monitoring the crew's health closely, and while stability is maintained, we are operating on thin margins for oxygen and food. I intend to discuss a slight increase in life support power allocation with the Commander once the solar arrays are fully operational to ensure we don't dip into our safety reserves.",
+          "timestamp": "2026-05-29T07:10:40.817291+00:00"
+        },
+        {
+          "sol": 20,
+          "phase": "morning",
+          "entry": "Sol 20 morning. Life support metrics are stable, but my concern regarding food reserves remains. I will continue to monitor the crew's physical health closely as we ramp up greenhouse operations post-storm.",
+          "timestamp": "2026-05-29T07:10:44.815519+00:00"
+        },
+        {
+          "sol": 20,
+          "phase": "midday",
+          "entry": "Sol 20 midday. Power levels are recovering nicely, and food reserves are at 27.6 days. While we are out of the immediate danger zone, I am closely monitoring the oxygen levels. I will continue to advocate for steady growth in greenhouse efficiency to bolster our long-term nutrition security.",
+          "timestamp": "2026-05-29T07:10:48.828925+00:00"
+        },
+        {
+          "sol": 20,
+          "phase": "evening",
+          "entry": "Sol 20 evening. Crew health remains stable, and life support metrics are currently within safe margins. With the storm passed and power levels recovering, I feel confident in our current pace, though I will maintain a close watch on our food reserves as we ramp up greenhouse production.",
+          "timestamp": "2026-05-29T07:10:52.945098+00:00"
+        },
+        {
+          "sol": 21,
+          "phase": "morning",
+          "entry": "Sol 21 morning. Crew health remains stable, but I am monitoring our nutritional reserves closely. While food is currently at 27.3 days, I believe we need to optimize our intake and greenhouse output to ensure we don't fall below the safety threshold as the mission progresses. I will continue to track consumption metrics to provide the Commander with accurate projections.",
+          "timestamp": "2026-05-29T07:10:57.388889+00:00"
+        },
+        {
+          "sol": 21,
+          "phase": "midday",
+          "entry": "Sol 21 midday. Current life support metrics are stable, but our food reserves at 27 days and water at 209L require proactive management. I am monitoring the crew's physical health closely as we transition to higher activity levels following the dust storm recovery. Will continue to advocate for resource replenishment if reserves trend downward.",
+          "timestamp": "2026-05-29T07:11:01.781891+00:00"
+        },
+        {
+          "sol": 21,
+          "phase": "evening",
+          "entry": "Sol 21 evening. Life support metrics remain stable, though food reserves at 26.9 days require long-term monitoring. I am pleased with the Commander's focus on sustainability. I will continue to track crew health closely as we move further into the mission.",
+          "timestamp": "2026-05-29T07:11:06.352674+00:00"
+        },
+        {
+          "sol": 22,
+          "phase": "morning",
+          "entry": "Sol 22 morning. Crew fatigue is moderate but stable. Current oxygen at 55.6% and food at 26.5 days provide a comfortable buffer, but I am keeping a close watch on the water reserves as we are hovering near the 100L minimum threshold. Preparations for long-term sustainability continue.",
+          "timestamp": "2026-05-29T07:11:10.089902+00:00"
+        },
+        {
+          "sol": 22,
+          "phase": "midday",
+          "entry": "Sol 22 midday. Crew morale is stable but resource anxiety is creeping in. While our oxygen and water levels are currently safe, I am monitoring the food supply closely as we approach the 90-sol mark. I plan to support the Commander's briefing tomorrow by providing a health-based perspective on our sustainability projections.",
+          "timestamp": "2026-05-29T07:11:14.404120+00:00"
+        }
+      ],
+      "private_beliefs": {
+        "crew_health": "stable",
+        "life_support_floor": "Oxygen must stay above 30%; water above 100L is minimum safe.",
+        "nutrition_concern": "moderate",
+        "last_reflection": "I need to document the current state of crew morale and my assessment of the resource situation. Writing a diary entry helps me synthesize my observations and prepare for the upcoming briefing with the Commander, as requested in my role as Medic."
+      },
+      "last_action_summary": "write_diary (conf=1.00): Diary entry recorded (326 chars)",
+      "last_action_type": "write_diary",
+      "last_reasoning": "I need to document the current state of crew morale and my assessment of the resource situation. Writing a diary entry helps me synthesize my observations and prepare for the upcoming briefing with the Commander, as requested in my role as Medic.",
+      "last_action_deltas": [
+        "Diary entry recorded (326 chars)"
+      ]
+    }
+  ],
+  "saved_at": "2026-05-29T07:11:14.406006+00:00"
+}

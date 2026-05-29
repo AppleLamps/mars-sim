@@ -1,0 +1,236 @@
+{
+  "world": {
+    "power_level": 86.9,
+    "oxygen": 79.4188286495032,
+    "water": 321.0153285540358,
+    "food_days": 37.66574703840683,
+    "habitat_integrity": 80.38979307639727,
+    "rover_fuel": 70.0,
+    "greenhouse_efficiency": 57.78333333333333,
+    "sol_number": 9,
+    "current_phase": "midday",
+    "phase_index": 25,
+    "recent_events": [
+      "Sol 1: Mars Base Alpha online. All crew accounted for. Mission clock started.",
+      "DUST STORM: solar panels at 64% efficiency for 1 phase(s)",
+      "Scientist observed atmosphere: Thin CO2 atmosphere; dust opacity elevated near horizon.",
+      "Dust storm clearing; solar efficiency recovering.",
+      "Anomalous methane spike detected near Sector C.",
+      "DUST STORM: solar panels at 58% efficiency for 3 phase(s)",
+      "Atmospheric pressure reading drifted 0.3% from baseline.",
+      "Scientist observed sensors: All primary sensors nominal; minor calibration drift on pressure.",
+      "Commander observed sensors: All primary sensors nominal; minor calibration drift on pressure.",
+      "Dust storm clearing; solar efficiency recovering."
+    ],
+    "agent_relationships": {
+      "Commander": {
+        "Engineer": 0.02,
+        "Scientist": 0.03,
+        "Medic": 0.02
+      },
+      "Engineer": {
+        "Commander": 0.01,
+        "Scientist": 0.01,
+        "Medic": 0.0
+      },
+      "Scientist": {
+        "Commander": 0.03,
+        "Engineer": 0.02,
+        "Medic": 0.02
+      },
+      "Medic": {
+        "Commander": 0.01,
+        "Engineer": 0.0,
+        "Scientist": 0.01
+      }
+    },
+    "public_messages": [
+      {
+        "sol": 5,
+        "phase": "evening",
+        "from_agent": "Commander",
+        "to": "all",
+        "content": "Attention crew, the dust storm is impacting our power generation. I am prioritizing life support and monitoring status. Please remain vigilant and report any anomalies in your respective sectors."
+      },
+      {
+        "sol": 6,
+        "phase": "morning",
+        "from_agent": "Scientist",
+        "to": "all",
+        "content": "The recent methane spike in Sector C is intriguing given the atmospheric pressure drift. I am prioritizing monitoring this anomaly closely as the storm subsides to investigate potential organic signatures."
+      }
+    ],
+    "pending_votes": [],
+    "active_dust_storm": null,
+    "power_allocations": {
+      "life_support": 92.03478260869565,
+      "greenhouse": 2.0,
+      "comms": 2.5565217391304347,
+      "rover": 3.4086956521739133
+    },
+    "collected_samples": [],
+    "resource_stockpile": {
+      "oxygen": 20.0,
+      "water": 100.0,
+      "food": 10.0,
+      "fuel": 30.0
+    },
+    "last_vote_proposal_phase": {},
+    "seed": 1,
+    "config": {
+      "dust_storm_chance": 0.15,
+      "dust_multiplier_min": 0.3,
+      "dust_multiplier_max": 0.7,
+      "dust_duration_min": 1,
+      "dust_duration_max": 3,
+      "o2_loss_min": 0.3,
+      "o2_loss_max": 0.8,
+      "water_loss_min": 2.0,
+      "water_loss_max": 5.0,
+      "food_loss_min": 0.2,
+      "food_loss_max": 0.4,
+      "integrity_loss_min": 0.2,
+      "integrity_loss_max": 0.5,
+      "isru_power_floor": 30.0,
+      "isru_ls_alloc_floor": 25.0,
+      "isru_o2_base": 0.15,
+      "isru_water_base": 0.5,
+      "greenhouse_food_factor": 0.1,
+      "anomaly_chance": 0.08,
+      "repair_boost_low": 1.0,
+      "repair_boost_medium": 2.5,
+      "repair_boost_high": 5.0,
+      "repair_power_low": 2.0,
+      "repair_power_medium": 5.0,
+      "repair_power_high": 10.0,
+      "eva_fuel_per_hour": 3.5,
+      "eva_power_per_hour": 1.5,
+      "eva_sample_chance": 0.6,
+      "eva_incident_chance": 0.15,
+      "rover_fuel_eva_floor": 10.0,
+      "dust_eva_severity_floor": 0.5,
+      "coupling_power_threshold": 50.0,
+      "coupling_min_factor": 0.5,
+      "vote_proposal_cooldown_phases": 3,
+      "fast_path_enabled": true,
+      "fast_path_o2_floor": 60.0,
+      "fast_path_water_floor": 200.0,
+      "fast_path_food_floor": 20.0,
+      "fast_path_power_floor": 60.0,
+      "fast_path_integrity_floor": 60.0
+    }
+  },
+  "agents": [
+    {
+      "name": "Commander",
+      "role": "Commander",
+      "short_term_memory": [
+        "Sol 7 evening: quiet phase, no action taken.",
+        "Sol 8 morning: quiet phase, no action taken.",
+        "Sol 8 midday: quiet phase, no action taken.",
+        "Sol 8 evening: quiet phase, no action taken.",
+        "Sol 9 morning: quiet phase, no action taken."
+      ],
+      "diary": [],
+      "private_beliefs": {
+        "mission_priority": "Complete 90-sol survival milestone with all crew alive.",
+        "crew_assessment": "Team is capable but untested under sustained stress.",
+        "resource_strategy": "Conservative reserves until dust season patterns are known.",
+        "last_reflection": "The recent anomalous methane spike in Sector C requires closer investigation to ensure it is not a leak or a precursor to a larger environmental hazard. Since the dust storm is clearing, I am prioritizing sensor data verification before re-allocating power or planning any EVA activities.",
+        "methane_monitor": "active"
+      },
+      "last_action_summary": "fast-path: quiet phase skipped (no LLM call)",
+      "last_action_type": "observe_environment",
+      "last_reasoning": "The recent anomalous methane spike in Sector C requires closer investigation to ensure it is not a leak or a precursor to a larger environmental hazard. Since the dust storm is clearing, I am prioritizing sensor data verification before re-allocating power or planning any EVA activities.",
+      "last_action_deltas": []
+    },
+    {
+      "name": "Engineer",
+      "role": "Engineer",
+      "short_term_memory": [
+        "Sol 7 evening: quiet phase, no action taken.",
+        "Sol 8 morning: quiet phase, no action taken.",
+        "Sol 8 midday: quiet phase, no action taken.",
+        "Sol 8 evening: quiet phase, no action taken.",
+        "Sol 9 morning: quiet phase, no action taken."
+      ],
+      "diary": [],
+      "private_beliefs": {
+        "system_health": "Primary systems nominal but redundancy margins are thin.",
+        "maintenance_plan": "Preventive repairs on power and habitat every 3 sols.",
+        "dust_risk": "Solar array efficiency will drop sharply during storms.",
+        "last_reflection": "The dust storm is significantly reducing our power generation efficiency. To ensure habitat integrity and life support remain at maximum levels during this period, I am curtailing non-essential power consumption in the greenhouse."
+      },
+      "last_action_summary": "fast-path: quiet phase skipped (no LLM call)",
+      "last_action_type": "observe_environment",
+      "last_reasoning": "The dust storm is significantly reducing our power generation efficiency. To ensure habitat integrity and life support remain at maximum levels during this period, I am curtailing non-essential power consumption in the greenhouse.",
+      "last_action_deltas": []
+    },
+    {
+      "name": "Scientist",
+      "role": "Scientist",
+      "short_term_memory": [
+        "Sol 7 evening: quiet phase, no action taken.",
+        "Sol 8 morning: quiet phase, no action taken.",
+        "Sol 8 midday: quiet phase, no action taken.",
+        "Sol 8 evening: quiet phase, no action taken.",
+        "Sol 9 morning: quiet phase, no action taken."
+      ],
+      "diary": [],
+      "private_beliefs": {
+        "research_goal": "Confirm organic signatures in subsurface samples from Sector C.",
+        "sample_priority": "Prioritize sediment layers over surface regolith.",
+        "greenhouse_theory": "Raising efficiency above 65% could extend food autonomy.",
+        "storm_impact_awareness": "high",
+        "last_reflection": "The methane spike is a high-priority scientific anomaly that may indicate subsurface activity. Communicating this to the crew ensures we are aligned on investigation priorities once the dust storm passes and safety permits exploration.",
+        "methane_monitor": "active"
+      },
+      "last_action_summary": "fast-path: quiet phase skipped (no LLM call)",
+      "last_action_type": "observe_environment",
+      "last_reasoning": "The methane spike is a high-priority scientific anomaly that may indicate subsurface activity. Communicating this to the crew ensures we are aligned on investigation priorities once the dust storm passes and safety permits exploration.",
+      "last_action_deltas": []
+    },
+    {
+      "name": "Medic",
+      "role": "Medic",
+      "short_term_memory": [
+        "Sol 7 evening: quiet phase, no action taken.",
+        "Sol 8 morning: quiet phase, no action taken.",
+        "Sol 8 midday: quiet phase, no action taken.",
+        "Sol 8 evening: quiet phase, no action taken.",
+        "Sol 9 morning: quiet phase, no action taken."
+      ],
+      "diary": [
+        {
+          "sol": 1,
+          "phase": "morning",
+          "entry": "Sol 1 start. Life support metrics are stable, but the dust storm is impacting power efficiency. I will keep a close watch on crew stress levels and ensure our resource management remains conservative given the isolation.",
+          "timestamp": "2026-05-29T07:09:49.179925+00:00"
+        },
+        {
+          "sol": 5,
+          "phase": "evening",
+          "entry": "The dust storm is beginning to wane, and our life support systems remain stable. I am keeping a close watch on the crew's physical condition as the pressure drift mentioned by the Scientist could impact long-term fatigue levels. Current reserves are sufficient, but I will continue to prioritize energy for life support until the storm fully clears.",
+          "timestamp": "2026-05-29T07:10:01.131158+00:00"
+        },
+        {
+          "sol": 6,
+          "phase": "morning",
+          "entry": "Sol 6 morning. The dust storm continues to strain our power grid, though life support remains stable. I am monitoring the crew for any respiratory issues due to the pressure drift, but all vitals are currently within normal range. I remain concerned about our long-term micronutrient diversity, but for now, we have enough food to sustain us through the storm.",
+          "timestamp": "2026-05-29T07:10:04.883847+00:00"
+        }
+      ],
+      "private_beliefs": {
+        "crew_health": "stable",
+        "life_support_floor": "Oxygen must stay above 30%; water above 100L is minimum safe.",
+        "nutrition_concern": "Caloric reserves adequate but micronutrient diversity is limited.",
+        "last_reflection": "As the Medic, my primary role is to monitor crew health and resource levels. Since all metrics are currently safe and the storm is ongoing, documenting the current status in the diary ensures a record is maintained while we wait for the environment to stabilize."
+      },
+      "last_action_summary": "fast-path: quiet phase skipped (no LLM call)",
+      "last_action_type": "observe_environment",
+      "last_reasoning": "As the Medic, my primary role is to monitor crew health and resource levels. Since all metrics are currently safe and the storm is ongoing, documenting the current status in the diary ensures a record is maintained while we wait for the environment to stabilize.",
+      "last_action_deltas": []
+    }
+  ],
+  "saved_at": "2026-05-29T07:10:04.926555+00:00"
+}

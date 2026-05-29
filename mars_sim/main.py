@@ -6,6 +6,7 @@ import argparse
 import json
 import os
 import sys
+from dataclasses import replace
 from datetime import datetime, timezone
 
 from dotenv import load_dotenv
@@ -65,6 +66,11 @@ def parse_args() -> argparse.Namespace:
         "--fresh-log",
         action="store_true",
         help="Truncate log file at run start instead of appending",
+    )
+    parser.add_argument(
+        "--fast-path",
+        action="store_true",
+        help="Skip LLM calls on quiet phases to save cost/time (changes run dynamics; off by default)",
     )
     return parser.parse_args()
 
@@ -154,9 +160,13 @@ def run_simulation(args: argparse.Namespace) -> None:
     if args.resume:
         print(f"Resuming from checkpoint: {args.resume}")
         world, agents = load_checkpoint(args.resume)
+        if args.fast_path:
+            world.config = replace(world.config, fast_path_enabled=True)
         target_phase_index = world.phase_index + args.sols * 3
     else:
         world = create_initial_state(seed=args.seed)
+        if args.fast_path:
+            world.config = replace(world.config, fast_path_enabled=True)
         agents = create_agents()
         target_phase_index = args.sols * 3
 
@@ -171,6 +181,17 @@ def run_simulation(args: argparse.Namespace) -> None:
     print(f"  Log:   {args.log_file}\n")
 
     phases_run = 0
+
+    metrics_track = {
+        "power": {"min": world.power_level, "max": world.power_level},
+        "oxygen": {"min": world.oxygen, "max": world.oxygen},
+        "water": {"min": world.water, "max": world.water},
+        "food_days": {"min": world.food_days, "max": world.food_days},
+        "habitat_integrity": {"min": world.habitat_integrity, "max": world.habitat_integrity},
+        "rover_fuel": {"min": world.rover_fuel, "max": world.rover_fuel},
+    }
+    vote_count = 0
+    message_count = {name: 0 for name in TURN_ORDER}
 
     while world.phase_index < target_phase_index:
         rng = make_phase_rng(world)
@@ -208,7 +229,28 @@ def run_simulation(args: argparse.Namespace) -> None:
             }
             log_jsonl(args.log_file, record)
 
+            if result.action is not None:
+                at = result.action.action_type.value
+                if at == "propose_vote":
+                    vote_count += 1
+                elif at == "send_message" and result.agent_name in message_count:
+                    message_count[result.agent_name] += 1
+
         print_phase_summary(world, ordered_agents)
+
+        for key, attr in (
+            ("power", "power_level"),
+            ("oxygen", "oxygen"),
+            ("water", "water"),
+            ("food_days", "food_days"),
+            ("habitat_integrity", "habitat_integrity"),
+            ("rover_fuel", "rover_fuel"),
+        ):
+            val = getattr(world, attr)
+            if val < metrics_track[key]["min"]:
+                metrics_track[key]["min"] = val
+            if val > metrics_track[key]["max"]:
+                metrics_track[key]["max"] = val
 
         phases_run += 1
 
@@ -222,7 +264,54 @@ def run_simulation(args: argparse.Namespace) -> None:
             print("\n*** CRITICAL: Life support failure. Simulation ended. ***")
             break
 
+    cause_of_death = None
+    if world.oxygen <= 0:
+        cause_of_death = "oxygen"
+    elif world.water <= 0:
+        cause_of_death = "water"
+    elif world.food_days <= 0:
+        cause_of_death = "food"
+    survived = cause_of_death is None and world.phase_index >= target_phase_index
+
     final_path = save_checkpoint(world, agents, args.checkpoint_dir)
+    summary_record = {
+        "timestamp": datetime.now(timezone.utc).isoformat(),
+        "agent": "SUMMARY",
+        "event": "run_summary",
+        "seed": world.seed,
+        "model": args.model,
+        "phases_run": phases_run,
+        "sols_run": round(phases_run / 3, 1),
+        "final_sol": world.sol_number,
+        "survived": survived,
+        "cause_of_death": cause_of_death,
+        "final_state": {
+            "power": round(world.power_level, 1),
+            "oxygen": round(world.oxygen, 1),
+            "water": round(world.water, 1),
+            "food_days": round(world.food_days, 1),
+            "habitat_integrity": round(world.habitat_integrity, 1),
+            "rover_fuel": round(world.rover_fuel, 1),
+            "greenhouse_efficiency": round(world.greenhouse_efficiency, 1),
+        },
+        "metrics_range": {
+            k: {"min": round(v["min"], 1), "max": round(v["max"], 1)}
+            for k, v in metrics_track.items()
+        },
+        "vote_count": vote_count,
+        "messages_per_agent": message_count,
+        "total_prompt_tokens": cost_tracker.prompt_tokens,
+        "total_completion_tokens": cost_tracker.completion_tokens,
+        "estimated_usd": round(cost_tracker.estimate_usd(), 4),
+        "parse_failures": cost_tracker.failed_parses,
+        "config": {
+            "coupling_power_threshold": world.config.coupling_power_threshold,
+            "coupling_min_factor": world.config.coupling_min_factor,
+            "dust_storm_chance": world.config.dust_storm_chance,
+        },
+    }
+    log_jsonl(args.log_file, summary_record)
+    print(f"\n[run summary written to {args.log_file}]")
     print(f"\nFinal checkpoint: {final_path}")
     print(cost_tracker.summary())
     print(f"\nSimulation complete after {phases_run} phases ({phases_run / 3:.1f} sols).")

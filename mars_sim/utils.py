@@ -26,6 +26,7 @@ MODEL_PRICING: dict[str, tuple[float, float]] = {
     "anthropic/claude-3.5-sonnet": (3.0, 15.0),
     "openai/gpt-4o-mini": (0.15, 0.60),
     "google/gemini-2.0-flash-001": (0.10, 0.40),
+    "google/gemini-3.1-flash-lite": (0.25, 1.50),
     "x-ai/grok-4-fast": (2.0, 10.0),
 }
 DEFAULT_PRICING: tuple[float, float] = (3.0, 15.0)

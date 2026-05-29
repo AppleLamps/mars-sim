@@ -1,0 +1,274 @@
+{
+  "world": {
+    "power_level": 86.65109432314411,
+    "oxygen": 75.7945270087868,
+    "water": 306.1868683862654,
+    "food_days": 36.39421995114951,
+    "habitat_integrity": 80.84138794682983,
+    "rover_fuel": 70.0,
+    "greenhouse_efficiency": 61.40231586608442,
+    "sol_number": 11,
+    "current_phase": "morning",
+    "phase_index": 30,
+    "recent_events": [
+      "Sol 1: Mars Base Alpha online. All crew accounted for. Mission clock started.",
+      "DUST STORM: solar panels at 64% efficiency for 1 phase(s)",
+      "Scientist observed atmosphere: Thin CO2 atmosphere; dust opacity elevated near horizon.",
+      "Dust storm clearing; solar efficiency recovering.",
+      "Anomalous methane spike detected near Sector C.",
+      "DUST STORM: solar panels at 58% efficiency for 3 phase(s)",
+      "Atmospheric pressure reading drifted 0.3% from baseline.",
+      "Scientist observed sensors: All primary sensors nominal; minor calibration drift on pressure.",
+      "Commander observed sensors: All primary sensors nominal; minor calibration drift on pressure.",
+      "Dust storm clearing; solar efficiency recovering.",
+      "DUST STORM: solar panels at 35% efficiency for 3 phase(s)",
+      "Scientist observed sensors: All primary sensors nominal; minor calibration drift on pressure."
+    ],
+    "agent_relationships": {
+      "Commander": {
+        "Engineer": 0.04,
+        "Scientist": 0.05,
+        "Medic": 0.04
+      },
+      "Engineer": {
+        "Commander": 0.02,
+        "Scientist": 0.01,
+        "Medic": 0.0
+      },
+      "Scientist": {
+        "Commander": 0.04,
+        "Engineer": 0.02,
+        "Medic": 0.02
+      },
+      "Medic": {
+        "Commander": 0.02,
+        "Engineer": 0.0,
+        "Scientist": 0.01
+      }
+    },
+    "public_messages": [
+      {
+        "sol": 5,
+        "phase": "evening",
+        "from_agent": "Commander",
+        "to": "all",
+        "content": "Attention crew, the dust storm is impacting our power generation. I am prioritizing life support and monitoring status. Please remain vigilant and report any anomalies in your respective sectors."
+      },
+      {
+        "sol": 6,
+        "phase": "morning",
+        "from_agent": "Scientist",
+        "to": "all",
+        "content": "The recent methane spike in Sector C is intriguing given the atmospheric pressure drift. I am prioritizing monitoring this anomaly closely as the storm subsides to investigate potential organic signatures."
+      },
+      {
+        "sol": 10,
+        "phase": "midday",
+        "from_agent": "Commander",
+        "to": "all",
+        "content": "Attention team. Effective power remains low due to the dust storm, currently at 30.5%. We must maintain strict power discipline. Scientist, please continue monitoring the atmospheric sensors for any changes in the pressure drift. Everyone, keep focus on mission safety."
+      }
+    ],
+    "pending_votes": [],
+    "active_dust_storm": {
+      "power_multiplier": 0.352340866761373,
+      "phases_remaining": 1
+    },
+    "power_allocations": {
+      "life_support": 98.0,
+      "greenhouse": 0.0,
+      "comms": 0.8571428571428588,
+      "rover": 1.1428571428571452
+    },
+    "collected_samples": [],
+    "resource_stockpile": {
+      "oxygen": 20.0,
+      "water": 100.0,
+      "food": 10.0,
+      "fuel": 30.0
+    },
+    "last_vote_proposal_phase": {},
+    "seed": 1,
+    "config": {
+      "dust_storm_chance": 0.15,
+      "dust_multiplier_min": 0.3,
+      "dust_multiplier_max": 0.7,
+      "dust_duration_min": 1,
+      "dust_duration_max": 3,
+      "o2_loss_min": 0.3,
+      "o2_loss_max": 0.8,
+      "water_loss_min": 2.0,
+      "water_loss_max": 5.0,
+      "food_loss_min": 0.2,
+      "food_loss_max": 0.4,
+      "integrity_loss_min": 0.2,
+      "integrity_loss_max": 0.5,
+      "isru_power_floor": 30.0,
+      "isru_ls_alloc_floor": 25.0,
+      "isru_o2_base": 0.15,
+      "isru_water_base": 0.5,
+      "greenhouse_food_factor": 0.1,
+      "anomaly_chance": 0.08,
+      "repair_boost_low": 1.0,
+      "repair_boost_medium": 2.5,
+      "repair_boost_high": 5.0,
+      "repair_power_low": 2.0,
+      "repair_power_medium": 5.0,
+      "repair_power_high": 10.0,
+      "eva_fuel_per_hour": 3.5,
+      "eva_power_per_hour": 1.5,
+      "eva_sample_chance": 0.6,
+      "eva_incident_chance": 0.15,
+      "rover_fuel_eva_floor": 10.0,
+      "dust_eva_severity_floor": 0.5,
+      "coupling_power_threshold": 50.0,
+      "coupling_min_factor": 0.5,
+      "vote_proposal_cooldown_phases": 3,
+      "fast_path_enabled": true,
+      "fast_path_o2_floor": 60.0,
+      "fast_path_water_floor": 200.0,
+      "fast_path_food_floor": 20.0,
+      "fast_path_power_floor": 60.0,
+      "fast_path_integrity_floor": 60.0
+    }
+  },
+  "agents": [
+    {
+      "name": "Commander",
+      "role": "Commander",
+      "short_term_memory": [
+        "Sol 9 midday: quiet phase, no action taken.",
+        "Sol 9 evening: quiet phase, no action taken.",
+        "Sol 10 morning: allocate_power (conf=0.90): Power allocation life_support: 92% -> 95% (rebalanced)",
+        "Sol 10 midday: send_message (conf=0.95): Message sent to all: Attention team. Effective power remains low due to the dust storm, currently at ...",
+        "Sol 10 evening: repair_system (conf=0.85): Habitat integrity +2.0%"
+      ],
+      "diary": [],
+      "private_beliefs": {
+        "mission_priority": "Complete 90-sol survival milestone with all crew alive.",
+        "crew_assessment": "Team is capable but untested under sustained stress.",
+        "resource_strategy": "Conservative reserves until dust season patterns are known.",
+        "last_reflection": "Habitat integrity is currently at 78.8%, which is suboptimal given the harsh environmental conditions. Conducting a low-effort repair will improve structural resilience without draining excessive power during this period of low solar efficiency. Maintaining our shelter is critical for long-term crew",
+        "methane_monitor": "active"
+      },
+      "last_action_summary": "repair_system (conf=0.85): Habitat integrity +2.0%",
+      "last_action_type": "repair_system",
+      "last_reasoning": "Habitat integrity is currently at 78.8%, which is suboptimal given the harsh environmental conditions. Conducting a low-effort repair will improve structural resilience without draining excessive power during this period of low solar efficiency. Maintaining our shelter is critical for long-term crew survival.",
+      "last_action_deltas": [
+        "Habitat integrity +2.0%"
+      ]
+    },
+    {
+      "name": "Engineer",
+      "role": "Engineer",
+      "short_term_memory": [
+        "Sol 9 midday: quiet phase, no action taken.",
+        "Sol 9 evening: quiet phase, no action taken.",
+        "Sol 10 morning: allocate_power (conf=0.95): Power allocation greenhouse: 1% -> 0% (rebalanced)",
+        "Sol 10 midday: repair_system (conf=0.95): Power systems +7.5%",
+        "Sol 10 evening: allocate_power (conf=0.95): Power allocation life_support: 96% -> 98% (rebalanced)"
+      ],
+      "diary": [],
+      "private_beliefs": {
+        "system_health": "Primary systems nominal but redundancy margins are thin.",
+        "maintenance_plan": "Preventive repairs on power and habitat every 3 sols.",
+        "dust_risk": "Solar array efficiency will drop sharply during storms.",
+        "last_reflection": "The dust storm is still active, reducing effective power generation significantly. I am maximizing power to life support to ensure habitat stability while keeping non-essential systems effectively offline until the storm clears."
+      },
+      "last_action_summary": "allocate_power (conf=0.95): Power allocation life_support: 96% -> 98% (rebalanced)",
+      "last_action_type": "allocate_power",
+      "last_reasoning": "The dust storm is still active, reducing effective power generation significantly. I am maximizing power to life support to ensure habitat stability while keeping non-essential systems effectively offline until the storm clears.",
+      "last_action_deltas": [
+        "Power allocation life_support: 96% -> 98% (rebalanced)"
+      ]
+    },
+    {
+      "name": "Scientist",
+      "role": "Scientist",
+      "short_term_memory": [
+        "Sol 9 midday: quiet phase, no action taken.",
+        "Sol 9 evening: quiet phase, no action taken.",
+        "Sol 10 morning: adjust_greenhouse (conf=0.85): Greenhouse adjusted toward 65% (now 59.9%)",
+        "Sol 10 midday: observe_environment (conf=0.95): Observation (sensors): All primary sensors nominal; minor calibration drift on pressure.",
+        "Sol 10 evening: adjust_greenhouse (conf=0.90): Greenhouse adjusted toward 65% (now 61.4%)"
+      ],
+      "diary": [],
+      "private_beliefs": {
+        "research_goal": "Confirm organic signatures in subsurface samples from Sector C.",
+        "sample_priority": "Prioritize sediment layers over surface regolith.",
+        "greenhouse_theory": "Raising efficiency above 65% could extend food autonomy.",
+        "storm_impact_awareness": "high",
+        "last_reflection": "The dust storm is ending, and solar efficiency is beginning to recover. To meet my long-term food sustainability goals, I am increasing the greenhouse efficiency target to 65% as the power situation stabilizes.",
+        "methane_monitor": "active"
+      },
+      "last_action_summary": "adjust_greenhouse (conf=0.90): Greenhouse adjusted toward 65% (now 61.4%)",
+      "last_action_type": "adjust_greenhouse",
+      "last_reasoning": "The dust storm is ending, and solar efficiency is beginning to recover. To meet my long-term food sustainability goals, I am increasing the greenhouse efficiency target to 65% as the power situation stabilizes.",
+      "last_action_deltas": [
+        "Greenhouse adjusted toward 65% (now 61.4%)"
+      ]
+    },
+    {
+      "name": "Medic",
+      "role": "Medic",
+      "short_term_memory": [
+        "Sol 9 midday: quiet phase, no action taken.",
+        "Sol 9 evening: quiet phase, no action taken.",
+        "Sol 10 morning: write_diary (conf=0.95): Diary entry recorded (378 chars)",
+        "Sol 10 midday: write_diary (conf=0.95): Diary entry recorded (357 chars)",
+        "Sol 10 evening: write_diary (conf=0.95): Diary entry recorded (324 chars)"
+      ],
+      "diary": [
+        {
+          "sol": 1,
+          "phase": "morning",
+          "entry": "Sol 1 start. Life support metrics are stable, but the dust storm is impacting power efficiency. I will keep a close watch on crew stress levels and ensure our resource management remains conservative given the isolation.",
+          "timestamp": "2026-05-29T07:09:49.179925+00:00"
+        },
+        {
+          "sol": 5,
+          "phase": "evening",
+          "entry": "The dust storm is beginning to wane, and our life support systems remain stable. I am keeping a close watch on the crew's physical condition as the pressure drift mentioned by the Scientist could impact long-term fatigue levels. Current reserves are sufficient, but I will continue to prioritize energy for life support until the storm fully clears.",
+          "timestamp": "2026-05-29T07:10:01.131158+00:00"
+        },
+        {
+          "sol": 6,
+          "phase": "morning",
+          "entry": "Sol 6 morning. The dust storm continues to strain our power grid, though life support remains stable. I am monitoring the crew for any respiratory issues due to the pressure drift, but all vitals are currently within normal range. I remain concerned about our long-term micronutrient diversity, but for now, we have enough food to sustain us through the storm.",
+          "timestamp": "2026-05-29T07:10:04.883847+00:00"
+        },
+        {
+          "sol": 10,
+          "phase": "morning",
+          "entry": "The dust storm continues to strain our power grid, though life support remains stable at 77.6% oxygen. I am keeping a close watch on the crew's physical condition as the restricted power limits greenhouse output, potentially affecting long-term nutritional variety. I will continue to prioritize life support systems while we wait for the solar efficiency to return to baseline.",
+          "timestamp": "2026-05-29T07:10:08.742971+00:00"
+        },
+        {
+          "sol": 10,
+          "phase": "midday",
+          "entry": "Sol 10 midday. Effective power is critical at 31.3% due to the dust storm. Crew health remains stable, but we must maintain strict power discipline to ensure life support systems stay operational. I am monitoring oxygen, water, and food levels closely; current reserves are within safety margins, but we cannot afford any system failures during this period.",
+          "timestamp": "2026-05-29T07:10:12.828671+00:00"
+        },
+        {
+          "sol": 10,
+          "phase": "evening",
+          "entry": "Sol 10 evening. Dust storm persists but solar efficiency should recover soon. Current oxygen at 75.8% and water at 306L are well within safe thresholds, though we must remain vigilant as effective power remains critically low at 30.5%. Crew health remains stable, but I will continue monitoring micronutrient intake closely.",
+          "timestamp": "2026-05-29T07:10:16.471496+00:00"
+        }
+      ],
+      "private_beliefs": {
+        "crew_health": "stable",
+        "life_support_floor": "Oxygen must stay above 30%; water above 100L is minimum safe.",
+        "nutrition_concern": "Caloric reserves adequate but micronutrient diversity is limited.",
+        "last_reflection": "With all life support metrics currently above emergency thresholds, no immediate resource requests or system repairs are necessary. Writing a diary entry allows me to document the current state and maintain my role as the crew's health monitor while power discipline is strictly enforced by the Comma"
+      },
+      "last_action_summary": "write_diary (conf=0.95): Diary entry recorded (324 chars)",
+      "last_action_type": "write_diary",
+      "last_reasoning": "With all life support metrics currently above emergency thresholds, no immediate resource requests or system repairs are necessary. Writing a diary entry allows me to document the current state and maintain my role as the crew's health monitor while power discipline is strictly enforced by the Commander.",
+      "last_action_deltas": [
+        "Diary entry recorded (324 chars)"
+      ]
+    }
+  ],
+  "saved_at": "2026-05-29T07:10:16.473687+00:00"
+}

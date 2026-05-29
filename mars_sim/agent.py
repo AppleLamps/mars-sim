@@ -90,6 +90,7 @@ class Agent:
     last_action_summary: str | None = None
     last_action_type: str | None = None
     last_reasoning: str | None = None
+    last_action_deltas: list[str] = field(default_factory=list)
 
     def __post_init__(self) -> None:
         if not self.private_beliefs:
@@ -138,6 +139,21 @@ class Agent:
         model: str,
     ) -> StepResult:
         """Execute one agent turn: LLM call, parse, apply action."""
+        # Opt-in fast-path: skip the LLM call entirely on quiet phases.
+        if world.config.fast_path_enabled and world.is_quiet_phase(self.name):
+            self._remember(
+                f"Sol {world.sol_number} {world.current_phase.value}: quiet phase, no action taken."
+            )
+            self.last_action_type = "observe_environment"
+            self.last_action_deltas = []
+            self.last_action_summary = "fast-path: quiet phase skipped (no LLM call)"
+            return StepResult(
+                agent_name=self.name,
+                action=None,
+                world_deltas=[],
+                skipped=True,
+                reasoning="fast-path: quiet phase",
+            )
         rng = make_agent_rng(world, self.name)
         system_prompt = get_system_prompt(self.role)
         user_prompt = build_user_prompt(self, world)
@@ -147,6 +163,7 @@ class Agent:
         if llm_result.error or llm_result.parsed_action is None:
             error_msg = llm_result.error or "system error: invalid JSON"
             logger.warning("%s skipped turn: %s", self.name, error_msg)
+            self.last_action_deltas = []
             self._remember(
                 f"Sol {world.sol_number} {world.current_phase.value}: system error, turn skipped."
             )
@@ -166,6 +183,7 @@ class Agent:
         self._update_beliefs(action)
 
         self.last_action_type = action.action_type.value
+        self.last_action_deltas = deltas
         self.last_reasoning = action.reasoning
 
         summary = (
@@ -203,6 +221,7 @@ class Agent:
             "last_action_summary": self.last_action_summary,
             "last_action_type": self.last_action_type,
             "last_reasoning": self.last_reasoning,
+            "last_action_deltas": self.last_action_deltas,
         }
 
     @classmethod
@@ -214,6 +233,7 @@ class Agent:
             last_action_summary=data.get("last_action_summary"),
             last_action_type=data.get("last_action_type"),
             last_reasoning=data.get("last_reasoning"),
+            last_action_deltas=data.get("last_action_deltas", []),
         )
         agent.short_term_memory = deque(
             data.get("short_term_memory", []), maxlen=5

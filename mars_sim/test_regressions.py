@@ -187,6 +187,7 @@ class RegressionTests(unittest.TestCase):
             log_file="",
             resume=None,
             fresh_log=True,
+            fast_path=False,
         )
 
         with tempfile.TemporaryDirectory() as tmpdir:
@@ -212,6 +213,87 @@ class RegressionTests(unittest.TestCase):
 
         self.assertIn("state_sol2_phaseevening_idx5.json", checkpoint_files)
         self.assertNotIn("state_sol2_phasemidday_idx4.json", checkpoint_files)
+
+    def test_power_coupling_throttles_downstream_at_low_power(self) -> None:
+        from world import create_initial_state
+
+        # Full power: factor should be 1.0
+        high = create_initial_state()
+        high.power_level = 100.0
+        self.assertAlmostEqual(1.0, high._power_coupling_factor())
+        # Zero power: factor should equal coupling_min_factor
+        low = create_initial_state()
+        low.power_level = 0.0
+        self.assertAlmostEqual(low.config.coupling_min_factor, low._power_coupling_factor())
+        # At threshold exactly: still 1.0
+        edge = create_initial_state()
+        edge.power_level = edge.config.coupling_power_threshold
+        self.assertAlmostEqual(1.0, edge._power_coupling_factor())
+        # Halfway below threshold: linear midpoint
+        mid = create_initial_state()
+        mid.power_level = mid.config.coupling_power_threshold / 2
+        expected = mid.config.coupling_min_factor + (1.0 - mid.config.coupling_min_factor) * 0.5
+        self.assertAlmostEqual(expected, mid._power_coupling_factor())
+
+
+    def test_propose_vote_cooldown_blocks_rapid_reproposal(self) -> None:
+        from world import create_initial_state
+        from actions import AgentAction
+        from random import Random
+
+        world = create_initial_state()
+
+        def make_vote(topic: str) -> AgentAction:
+            return AgentAction.model_validate({
+                "action_type": "propose_vote",
+                "parameters": {"topic": topic, "options": ["Yes", "No"]},
+                "reasoning": "We need a decision. A vote keeps the crew aligned.",
+                "confidence": 0.8,
+            })
+
+        # First proposal at phase_index 0 succeeds.
+        first = world.apply_action(make_vote("Power rationing"), "Commander", Random(0))
+        self.assertIn("Vote proposed", first[0])
+
+        # Same agent proposes a DIFFERENT topic immediately (still phase 0) -> blocked by cooldown.
+        second = world.apply_action(make_vote("EVA schedule"), "Commander", Random(0))
+        self.assertEqual(1, len(second))
+        self.assertIn("cooldown", second[0].lower())
+
+        # Advance phase_index past the cooldown window, then it should succeed again.
+        world.phase_index = world.config.vote_proposal_cooldown_phases
+        third = world.apply_action(make_vote("EVA schedule"), "Commander", Random(0))
+        self.assertIn("Vote proposed", third[0])
+
+
+    def test_fast_path_skips_only_when_enabled_and_quiet(self) -> None:
+        from world import create_initial_state
+        from dataclasses import replace
+
+        # Fresh state is comfortably above all floors and has no storm/votes => quiet.
+        world = create_initial_state()
+        self.assertTrue(world.is_quiet_phase("Commander"))
+
+        # A dust storm makes it non-quiet.
+        from world import DustStorm
+        world.active_dust_storm = DustStorm(power_multiplier=0.4, phases_remaining=2)
+        self.assertFalse(world.is_quiet_phase("Commander"))
+        world.active_dust_storm = None
+
+        # Low oxygen makes it non-quiet.
+        world.oxygen = 50.0
+        self.assertFalse(world.is_quiet_phase("Commander"))
+        world.oxygen = 92.0
+
+        # A pending vote the agent hasn't cast on makes it non-quiet for that agent.
+        from world import PendingVote
+        world.pending_votes.append(
+            PendingVote(topic="Test topic", options=["Yes", "No"], proposer="Engineer", sol=1, phase="morning")
+        )
+        self.assertFalse(world.is_quiet_phase("Commander"))
+        # But an agent who already voted sees it as quiet (assuming nothing else fails).
+        world.pending_votes[0].votes["Commander"] = "Yes"
+        self.assertTrue(world.is_quiet_phase("Commander"))
 
 
 if __name__ == "__main__":

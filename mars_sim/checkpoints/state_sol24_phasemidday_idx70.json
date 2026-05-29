@@ -1,16 +1,21 @@
 {
   "world": {
-    "power_level": 47.7515837025668,
-    "oxygen": 47.24681166063232,
-    "water": 167.9327127313501,
-    "food_days": 23.020267613301552,
-    "habitat_integrity": 90.53051169699123,
+    "power_level": 48.64996630406148,
+    "oxygen": 51.391175371200276,
+    "water": 180.5777111882484,
+    "food_days": 24.647312514012107,
+    "habitat_integrity": 92.43210152677707,
     "rover_fuel": 56.0,
-    "greenhouse_efficiency": 71.14779701743792,
-    "sol_number": 26,
-    "current_phase": "morning",
-    "phase_index": 75,
+    "greenhouse_efficiency": 73.07910449038127,
+    "sol_number": 24,
+    "current_phase": "midday",
+    "phase_index": 70,
     "recent_events": [
+      "DUST STORM: solar panels at 68% efficiency for 1 phase(s)",
+      "Dust storm clearing; solar efficiency recovering.",
+      "DUST STORM: solar panels at 54% efficiency for 1 phase(s)",
+      "Dust storm clearing; solar efficiency recovering.",
+      "Atmospheric pressure reading drifted 0.3% from baseline.",
       "Commander observed sensors: All primary sensors nominal; minor calibration drift on pressure.",
       "Scientist observed geology: Basaltic regolith with layered sediment deposits visible.",
       "EVA recovered sample S20-217 from Sector C.",
@@ -25,36 +30,45 @@
       "Dust storm clearing; solar efficiency recovering.",
       "Engineer observed sensors: All primary sensors nominal; minor calibration drift on pressure.",
       "Scientist analyzed S20-217 via chromatography: trace organics detected.",
-      "Commander observed crew: Crew fatigue moderate; morale stable but resource anxiety rising.",
-      "Scientist observed sensors: All primary sensors nominal; minor calibration drift on pressure.",
-      "DUST STORM: solar panels at 54% efficiency for 1 phase(s)",
-      "Dust storm clearing; solar efficiency recovering.",
-      "Vote resolved: 'Priority for Sol 26: Resume EVA for sediment sampling or perform proactive power grid maintenance?' -> Resume EVA ({'Resume EVA': 1, 'Power Grid Maintenance': 1})",
-      "Scientist analyzed S20-217 via spectroscopy: trace organics detected."
+      "Commander observed crew: Crew fatigue moderate; morale stable but resource anxiety rising."
     ],
     "agent_relationships": {
       "Commander": {
-        "Engineer": 0.29,
-        "Scientist": 0.25999999999999995,
-        "Medic": 0.23999999999999996
+        "Engineer": 0.24999999999999997,
+        "Scientist": 0.21999999999999997,
+        "Medic": 0.19999999999999998
       },
       "Engineer": {
-        "Commander": 0.22000000000000003,
+        "Commander": 0.2,
         "Scientist": 0.02,
         "Medic": 0.0
       },
       "Scientist": {
-        "Commander": 0.16,
+        "Commander": 0.13999999999999999,
         "Engineer": 0.04,
         "Medic": 0.04
       },
       "Medic": {
-        "Commander": 0.11999999999999998,
+        "Commander": 0.09999999999999999,
         "Engineer": 0.0,
         "Scientist": 0.02
       }
     },
     "public_messages": [
+      {
+        "sol": 10,
+        "phase": "midday",
+        "from_agent": "Commander",
+        "to": "all",
+        "content": "Attention team. Effective power remains low due to the dust storm, currently at 30.5%. We must maintain strict power discipline. Scientist, please continue monitoring the atmospheric sensors for any changes in the pressure drift. Everyone, keep focus on mission safety."
+      },
+      {
+        "sol": 15,
+        "phase": "morning",
+        "from_agent": "Commander",
+        "to": "all",
+        "content": "Attention crew. The dust storm is clearing, but our effective power remains critically low at 47.1%. I am maintaining the current restrictive power allocation to ensure life support stability. Let's remain focused on conservation until we are back to full capacity."
+      },
       {
         "sol": 17,
         "phase": "morning",
@@ -124,43 +138,15 @@
         "from_agent": "Engineer",
         "to": "Commander",
         "content": "Commander, power remains critical under 50%. I have further reduced non-essential greenhouse load to throttle energy drain. I recommend we defer the requested EVA until we stabilize above 55% power to ensure safety."
-      },
-      {
-        "sol": 24,
-        "phase": "midday",
-        "from_agent": "Commander",
-        "to": "all",
-        "content": "Attention crew. Power remains below 50%. We will prioritize stabilization of our energy reserves before initiating any new EVAs. Engineer, please continue monitoring power efficiency; Scientist, your work on S20-217 is noted, but safety takes precedence until we clear this threshold."
-      },
-      {
-        "sol": 25,
-        "phase": "midday",
-        "from_agent": "Commander",
-        "to": "all",
-        "content": "Attention crew. Power levels are recovering after the dust storm. I am opening a discussion on our next priority: resuming scientific research via EVA or further fortifying our power grid to ensure long-term stability. Please share your thoughts."
       }
     ],
-    "pending_votes": [
-      {
-        "topic": "Given our 50.8% power level, shall we proceed with the sediment sampling EVA or prioritize infrastructure maintenance?",
-        "options": [
-          "Resume EVA",
-          "Power Grid Maintenance"
-        ],
-        "proposer": "Commander",
-        "sol": 25,
-        "phase": "evening",
-        "votes": {
-          "Engineer": "Power Grid Maintenance"
-        }
-      }
-    ],
+    "pending_votes": [],
     "active_dust_storm": null,
     "power_allocations": {
-      "life_support": 72.25,
-      "greenhouse": 15.0,
-      "comms": 5.46428571428571,
-      "rover": 7.285714285714279
+      "life_support": 80.0,
+      "greenhouse": 14.393944654699483,
+      "comms": 2.4025951479859335,
+      "rover": 3.203460197314578
     },
     "collected_samples": [
       "S20-217"
@@ -171,10 +157,7 @@
       "food": 10.0,
       "fuel": 30.0
     },
-    "last_vote_proposal_phase": {
-      "Engineer": 73,
-      "Commander": 74
-    },
+    "last_vote_proposal_phase": {},
     "seed": 1,
     "config": {
       "dust_storm_chance": 0.15,
@@ -224,11 +207,11 @@
       "name": "Commander",
       "role": "Commander",
       "short_term_memory": [
-        "Sol 24 midday: send_message (conf=0.95): Message sent to all: Attention crew. Power remains below 50%. We will prioritize stabilization of our...",
-        "Sol 24 evening: allocate_power (conf=0.95): Power allocation greenhouse: 5% -> 2% (rebalanced)",
-        "Sol 25 morning: allocate_power (conf=0.90): Power allocation life_support: 93% -> 85% (rebalanced)",
-        "Sol 25 midday: send_message (conf=0.95): Message sent to all: Attention crew. Power levels are recovering after the dust storm. I am opening a...",
-        "Sol 25 evening: propose_vote (conf=0.95): Vote proposed: Given our 50.8% power level, shall we proceed with the sediment sampling EVA or prioritize infrastructure maintenance? options=['Resume EVA', 'Power Grid Maintenance']"
+        "Sol 22 evening: allocate_power (conf=0.90): Power allocation life_support: 62% -> 75% (rebalanced)",
+        "Sol 23 morning: send_message (conf=0.95): Message sent to all: Attention crew. We are holding steady at 54% power and 25 days of food. I am cal...",
+        "Sol 23 midday: observe_environment (conf=0.95): Observation (crew): Crew fatigue moderate; morale stable but resource anxiety rising.",
+        "Sol 23 evening: send_message (conf=0.95): Message sent to all: Attention crew. We are holding our mission briefing now. Despite the recent powe...",
+        "Sol 24 morning: allocate_power (conf=0.90): Power allocation life_support: 89% -> 80% (rebalanced)"
       ],
       "diary": [
         {
@@ -242,52 +225,52 @@
         "mission_priority": "Complete 90-sol survival milestone with all crew alive.",
         "crew_assessment": "Team is capable but untested under sustained stress.",
         "resource_strategy": "Conservative reserves until dust season patterns are known.",
-        "last_reflection": "Since the previous vote resulted in a tie, I am re-initiating the vote to force a clear decision from the crew. It is vital to reach a consensus on whether to prioritize scientific objectives or infrastructure stability before committing to high-risk activities.",
+        "last_reflection": "Power levels are below 50% and critical for mission survival. I am slightly reducing life support allocation from its current high level to rebalance the grid, while maintaining safety, as the dust storm has passed and solar efficiency is improving. This ensures we stay within safe margins while sta",
         "methane_monitor": "active",
         "scientific_potential": "high",
         "crew_morale": "stable",
         "resource_anxiety": "addressed"
       },
-      "last_action_summary": "propose_vote (conf=0.95): Vote proposed: Given our 50.8% power level, shall we proceed with the sediment sampling EVA or prioritize infrastructure maintenance? options=['Resume EVA', 'Power Grid Maintenance']",
-      "last_action_type": "propose_vote",
-      "last_reasoning": "Since the previous vote resulted in a tie, I am re-initiating the vote to force a clear decision from the crew. It is vital to reach a consensus on whether to prioritize scientific objectives or infrastructure stability before committing to high-risk activities.",
+      "last_action_summary": "allocate_power (conf=0.90): Power allocation life_support: 89% -> 80% (rebalanced)",
+      "last_action_type": "allocate_power",
+      "last_reasoning": "Power levels are below 50% and critical for mission survival. I am slightly reducing life support allocation from its current high level to rebalance the grid, while maintaining safety, as the dust storm has passed and solar efficiency is improving. This ensures we stay within safe margins while stabilizing the overall power budget.",
       "last_action_deltas": [
-        "Vote proposed: Given our 50.8% power level, shall we proceed with the sediment sampling EVA or prioritize infrastructure maintenance? options=['Resume EVA', 'Power Grid Maintenance']"
+        "Power allocation life_support: 89% -> 80% (rebalanced)"
       ]
     },
     {
       "name": "Engineer",
       "role": "Engineer",
       "short_term_memory": [
-        "Sol 24 midday: allocate_power (conf=0.95): Power allocation greenhouse: 14% -> 5% (rebalanced)",
-        "Sol 24 evening: allocate_power (conf=0.95): Power allocation greenhouse: 2% -> 0% (rebalanced)",
-        "Sol 25 morning: repair_system (conf=0.95): Power systems +7.5%",
-        "Sol 25 midday: propose_vote (conf=0.95): Vote proposed: Priority for Sol 26: Resume EVA for sediment sampling or perform proactive power grid maintenance? options=['Resume EVA', 'Power Grid Maintenance']",
-        "Sol 25 evening: cast_vote (conf=0.95): Engineer voted 'Power Grid Maintenance' on 'Given our 50.8% power level, shall we proceed with the sediment sampling EVA or prioritize infrastructure maintenance?'"
+        "Sol 22 evening: allocate_power (conf=0.95): Power allocation greenhouse: 23% -> 10% (rebalanced)",
+        "Sol 23 morning: observe_environment (conf=0.95): Observation (sensors): All primary sensors nominal; minor calibration drift on pressure.",
+        "Sol 23 midday: repair_system (conf=0.90): Habitat integrity +2.0%",
+        "Sol 23 evening: allocate_power (conf=0.95): Power allocation greenhouse: 12% -> 8% (rebalanced)",
+        "Sol 24 morning: send_message (conf=0.95): Message sent to Commander: Commander, power remains critical under 50%. I have further reduced non-essentia..."
       ],
       "diary": [],
       "private_beliefs": {
         "system_health": "nominal",
         "maintenance_plan": "completed_habitat_check",
         "dust_risk": "Solar array efficiency will drop sharply during storms.",
-        "last_reflection": "While scientific data is valuable, our power levels remain precarious at 50.8%. Prioritizing grid maintenance will ensure long-term base stability, preventing potential catastrophic failures during future dust events."
+        "last_reflection": "Our power is currently below the critical 50% threshold following the dust storm. I have communicated the need for caution regarding the Scientist's proposed EVA to ensure we prioritize habitat and life support stability over additional exploration."
       },
-      "last_action_summary": "cast_vote (conf=0.95): Engineer voted 'Power Grid Maintenance' on 'Given our 50.8% power level, shall we proceed with the sediment sampling EVA or prioritize infrastructure maintenance?'",
-      "last_action_type": "cast_vote",
-      "last_reasoning": "While scientific data is valuable, our power levels remain precarious at 50.8%. Prioritizing grid maintenance will ensure long-term base stability, preventing potential catastrophic failures during future dust events.",
+      "last_action_summary": "send_message (conf=0.95): Message sent to Commander: Commander, power remains critical under 50%. I have further reduced non-essentia...",
+      "last_action_type": "send_message",
+      "last_reasoning": "Our power is currently below the critical 50% threshold following the dust storm. I have communicated the need for caution regarding the Scientist's proposed EVA to ensure we prioritize habitat and life support stability over additional exploration.",
       "last_action_deltas": [
-        "Engineer voted 'Power Grid Maintenance' on 'Given our 50.8% power level, shall we proceed with the sediment sampling EVA or prioritize infrastructure maintenance?'"
+        "Message sent to Commander: Commander, power remains critical under 50%. I have further reduced non-essentia..."
       ]
     },
     {
       "name": "Scientist",
       "role": "Scientist",
       "short_term_memory": [
-        "Sol 24 midday: observe_environment (conf=0.95): Observation (sensors): All primary sensors nominal; minor calibration drift on pressure.",
-        "Sol 24 evening: adjust_greenhouse (conf=0.90): Greenhouse adjusted toward 65% (now 69.6%)",
-        "Sol 25 morning: allocate_power (conf=0.90): Power allocation greenhouse: 0% -> 15% (rebalanced)",
-        "Sol 25 midday: cast_vote (conf=0.90): Scientist voted 'Resume EVA' on 'Priority for Sol 26: Resume EVA for sediment sampling or perform proactive power grid maintenance?'",
-        "Sol 25 evening: analyze_sample (conf=0.95): Analysis of S20-217 complete (spectroscopy)"
+        "Sol 22 evening: allocate_power (conf=0.95): Power allocation life_support: 88% -> 85% (rebalanced)",
+        "Sol 23 morning: analyze_sample (conf=0.95): Analysis of S20-217 complete (chromatography)",
+        "Sol 23 midday: adjust_greenhouse (conf=0.95): Greenhouse adjusted toward 78% (now 74.8%)",
+        "Sol 23 evening: send_message (conf=0.95): Message sent to all: Confirming trace organics in sample S20-217. This is a promising indicator for o...",
+        "Sol 24 morning: adjust_greenhouse (conf=0.95): Greenhouse adjusted toward 70% (now 73.1%)"
       ],
       "diary": [],
       "private_beliefs": {
@@ -295,25 +278,25 @@
         "sample_priority": "Prioritize sediment layers over surface regolith.",
         "greenhouse_theory": "Raising efficiency above 65% could extend food autonomy.",
         "storm_impact_awareness": "high",
-        "last_reflection": "Since the vote for the EVA is currently tied and power is recovering, I will focus on extracting more data from the existing sample. This advances our research goals while we wait for the Commander to break the tie or for power levels to safely exceed the 55% threshold.",
+        "last_reflection": "The Engineer has requested to throttle greenhouse energy consumption to address the critical power shortage below 50%. While I aim to maximize food efficiency, balancing power reserves is essential for the safety of the mission and the crew. I will lower the target efficiency slightly to comply with",
         "methane_monitor": "active"
       },
-      "last_action_summary": "analyze_sample (conf=0.95): Analysis of S20-217 complete (spectroscopy)",
-      "last_action_type": "analyze_sample",
-      "last_reasoning": "Since the vote for the EVA is currently tied and power is recovering, I will focus on extracting more data from the existing sample. This advances our research goals while we wait for the Commander to break the tie or for power levels to safely exceed the 55% threshold.",
+      "last_action_summary": "adjust_greenhouse (conf=0.95): Greenhouse adjusted toward 70% (now 73.1%)",
+      "last_action_type": "adjust_greenhouse",
+      "last_reasoning": "The Engineer has requested to throttle greenhouse energy consumption to address the critical power shortage below 50%. While I aim to maximize food efficiency, balancing power reserves is essential for the safety of the mission and the crew. I will lower the target efficiency slightly to comply with energy conservation while maintaining long-term food sustainability.",
       "last_action_deltas": [
-        "Analysis of S20-217 complete (spectroscopy)"
+        "Greenhouse adjusted toward 70% (now 73.1%)"
       ]
     },
     {
       "name": "Medic",
       "role": "Medic",
       "short_term_memory": [
-        "Sol 24 midday: write_diary (conf=1.00): Diary entry recorded (256 chars)",
-        "Sol 24 evening: write_diary (conf=0.95): Diary entry recorded (342 chars)",
-        "Sol 25 morning: write_diary (conf=0.95): Diary entry recorded (332 chars)",
-        "Sol 25 midday: cast_vote (conf=0.95): Medic voted 'Power Grid Maintenance' on 'Priority for Sol 26: Resume EVA for sediment sampling or perform proactive power grid maintenance?'",
-        "Sol 25 evening: write_diary (conf=0.95): Diary entry recorded (315 chars)"
+        "Sol 22 evening: write_diary (conf=0.95): Diary entry recorded (302 chars)",
+        "Sol 23 morning: write_diary (conf=0.98): Diary entry recorded (364 chars)",
+        "Sol 23 midday: write_diary (conf=0.98): Diary entry recorded (466 chars)",
+        "Sol 23 evening: write_diary (conf=0.95): Diary entry recorded (360 chars)",
+        "Sol 24 morning: write_diary (conf=1.00): Diary entry recorded (366 chars)"
       ],
       "diary": [
         {
@@ -465,46 +448,22 @@
           "phase": "morning",
           "entry": "Sol 24 morning. Power levels remain below the 50% threshold, which is concerning for long-term life support stability. Crew morale is fragile due to resource anxiety; I must monitor physical symptoms of stress. I agree with the Engineer's assessment to defer the EVA until power reserves recover to ensure we don't risk oxygen depletion during a potential emergency.",
           "timestamp": "2026-05-29T07:11:45.131430+00:00"
-        },
-        {
-          "sol": 24,
-          "phase": "midday",
-          "entry": "Sol 24 midday. Power remains under 50% at 48.6%. While life support systems are stable, the crew's anxiety regarding resource longevity is palpable. I am monitoring vitals closely to ensure fatigue does not lead to errors in our power management protocols.",
-          "timestamp": "2026-05-29T07:11:49.341971+00:00"
-        },
-        {
-          "sol": 24,
-          "phase": "evening",
-          "entry": "Sol 24 evening. Power levels remain critical due to the dust storm, currently at 25.9% effective capacity. While oxygen and water are above emergency thresholds, the psychological strain on the crew is increasing. I am monitoring for signs of fatigue-related errors and advocating for strict power conservation to ensure we survive the storm.",
-          "timestamp": "2026-05-29T07:11:53.465813+00:00"
-        },
-        {
-          "sol": 25,
-          "phase": "morning",
-          "entry": "Sol 25 morning. Power levels have recovered slightly to 50.8%, but crew anxiety remains a significant health factor. I am monitoring the oxygen levels closely, as they are trending downward; 48.7% is safe but requires vigilance. I will advocate for power prioritization to life support if we see any further degradation in reserves.",
-          "timestamp": "2026-05-29T07:11:58.384331+00:00"
-        },
-        {
-          "sol": 25,
-          "phase": "evening",
-          "entry": "Power is still hovering precariously below the 50% threshold. While the dust storm has passed, our energy reserves remain a primary concern for long-term crew health. I have advocated for grid maintenance to ensure we don't face a catastrophic failure, as our life support systems depend entirely on this stability.",
-          "timestamp": "2026-05-29T07:12:07.895651+00:00"
         }
       ],
       "private_beliefs": {
         "crew_health": "stable_but_anxious",
         "life_support_floor": "Oxygen must stay above 30%; water above 100L is minimum safe.",
         "nutrition_concern": "moderate",
-        "last_reflection": "The crew's power levels are still dangerously low, and as Medic, my priority is ensuring life support stability. Since the power grid is the foundation for all life support, I am recording my concerns in my diary to maintain a clear record of my advocacy for system maintenance over risky EVAs.",
+        "last_reflection": "I need to document my concern regarding the low power levels and their impact on crew well-being. By recording this in my diary, I formalize my monitoring of the crew's stress levels and my agreement with safety protocols. This maintains my role as the Medic concerned with both physical and mental s",
         "power_status": "critical"
       },
-      "last_action_summary": "write_diary (conf=0.95): Diary entry recorded (315 chars)",
+      "last_action_summary": "write_diary (conf=1.00): Diary entry recorded (366 chars)",
       "last_action_type": "write_diary",
-      "last_reasoning": "The crew's power levels are still dangerously low, and as Medic, my priority is ensuring life support stability. Since the power grid is the foundation for all life support, I am recording my concerns in my diary to maintain a clear record of my advocacy for system maintenance over risky EVAs.",
+      "last_reasoning": "I need to document my concern regarding the low power levels and their impact on crew well-being. By recording this in my diary, I formalize my monitoring of the crew's stress levels and my agreement with safety protocols. This maintains my role as the Medic concerned with both physical and mental stability.",
       "last_action_deltas": [
-        "Diary entry recorded (315 chars)"
+        "Diary entry recorded (366 chars)"
       ]
     }
   ],
-  "saved_at": "2026-05-29T07:12:07.900171+00:00"
+  "saved_at": "2026-05-29T07:11:45.133650+00:00"
 }

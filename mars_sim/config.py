@@ -51,3 +51,21 @@ class SimConfig:
     # Blocking thresholds (get_blocked_actions, ~line 216)
     rover_fuel_eva_floor: float = 10.0
     dust_eva_severity_floor: float = 0.5
+
+    # Power coupling (Step 5): below this effective-power %, downstream systems are throttled
+    coupling_power_threshold: float = 50.0
+    # Efficiency floor when power is fully starved (0.0 effective power). Linear ramp up to 1.0 at threshold.
+    coupling_min_factor: float = 0.5
+
+    # Vote spam guard (Step 9): an agent must wait this many phases between its own vote proposals
+    vote_proposal_cooldown_phases: int = 3
+
+    # Trivial-phase fast-path (Step 11): when enabled, agents skip the LLM call on "quiet"
+    # phases to save cost/time. OFF by default so it never silently changes run dynamics.
+    fast_path_enabled: bool = False
+    # A phase is "quiet" only if ALL these hold (thresholds chosen to be comfortably safe):
+    fast_path_o2_floor: float = 60.0
+    fast_path_water_floor: float = 200.0
+    fast_path_food_floor: float = 20.0
+    fast_path_power_floor: float = 60.0
+    fast_path_integrity_floor: float = 60.0

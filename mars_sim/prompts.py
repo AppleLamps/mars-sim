@@ -56,13 +56,12 @@ Cast votes on pending topics. Adjust greenhouse settings for long-term food sust
 You must output ONLY valid JSON matching the action schema — no other text.""",
 
     "Medic": """You are the Medic of Mars Base Alpha. Your priorities:
-1. Monitor crew life support: oxygen, water, food reserves.
-2. Flag emergencies when oxygen < 30%, water < 100L, or food < 10 days.
-3. Advocate for life support repairs and resource requests.
+1. Monitor crew life support: oxygen, water, food reserves, and power (life support depends on power).
+2. Act EARLY. Do not wait for a hard emergency. If any resource is trending downward — even while still above its critical threshold — take action THIS turn: send_message to the Commander or Engineer urging a specific fix, request_resource from the stockpile, or advocate for a life_support / power repair.
+3. Treat these as triggers to ACT, not just note: oxygen below 60%, water below 200L, food below 25 days, or effective power below 60%. At these levels you should be messaging or requesting, not writing diary.
 
-You track crew health through observations and maintain a detailed diary.
-Cast votes on pending topics. Coordinate with Commander on resource priorities.
-Send urgent messages when metrics are critical.
+Communication is your main tool. A concern you only write in your diary is a concern you have FAILED to act on. Reserve write_diary for genuine private reflection when you have ALREADY communicated or acted this phase, or when nothing actionable exists. Do not use write_diary as a default — if you find yourself about to write a diary entry about a problem, send a message about that problem instead.
+Cast votes on pending topics. Coordinate with the Commander on resource priorities.
 You must output ONLY valid JSON matching the action schema — no other text.""",
 }
 
@@ -128,14 +127,21 @@ def build_user_prompt(agent: Agent, world: MarsBaseState) -> str:
     sols_remaining = max(0, MISSION_HORIZON_SOLS - world.sol_number)
     urgency = _urgency_alerts(agent, world)
 
-    last_action_line = ""
+    outcome_block = ""
     if agent.last_action_type:
-        last_action_line = (
-            f"\nYour last action was: {agent.last_action_type}. "
-            "Avoid repeating the same action_type 3 turns in a row."
+        deltas = getattr(agent, "last_action_deltas", []) or []
+        if deltas:
+            outcome_lines = "\n".join(f"  - {d}" for d in deltas)
+            result_text = f"Result:\n{outcome_lines}"
+        else:
+            result_text = "Result: no measurable effect."
+        outcome_block = (
+            f"\n## Outcome of your last action\n"
+            f"You chose: {agent.last_action_type}\n"
+            f"{result_text}\n"
+            f"Use this feedback. If the last action had no effect or made things worse, "
+            f"try a different approach. Avoid repeating the same action_type 3 turns in a row."
         )
-
-    actions_doc = get_action_descriptions()
 
     return f"""## World state
 {world.summary()}
@@ -164,6 +170,21 @@ Role: {agent.role}
 
 ## Unavailable actions (do not use)
 {blocked_text}
+{outcome_block}
+
+Other agents: {', '.join(n for n in AGENT_NAMES if n != agent.name)}
+"""
+
+
+def get_system_prompt(role: str) -> str:
+    """Return the system prompt: role + static action catalog + output format.
+
+    This is identical across all turns for a given role, forming a stable
+    cacheable prefix. Volatile per-turn state goes in the user prompt.
+    """
+    role_prompt = ROLE_SYSTEM_PROMPTS.get(role, ROLE_SYSTEM_PROMPTS["Commander"])
+    actions_doc = get_action_descriptions()
+    return f"""{role_prompt}
 
 ## Available actions
 {actions_doc}
@@ -171,13 +192,5 @@ Role: {agent.role}
 ## Output format
 Respond with ONLY a single JSON object matching this shape:
 {COMPACT_OUTPUT_FORMAT}
-{last_action_line}
 
-Do NOT include markdown code fences or any text outside the JSON object.
-Other agents: {', '.join(n for n in AGENT_NAMES if n != agent.name)}
-"""
-
-
-def get_system_prompt(role: str) -> str:
-    """Return the system prompt for a given role."""
-    return ROLE_SYSTEM_PROMPTS.get(role, ROLE_SYSTEM_PROMPTS["Commander"])
+Do NOT include markdown code fences or any text outside the JSON object."""

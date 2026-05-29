@@ -2,7 +2,7 @@
 
 from __future__ import annotations
 
-from dataclasses import dataclass, field
+from dataclasses import asdict, dataclass, field, fields
 from enum import Enum
 from random import Random
 from typing import Any
@@ -142,6 +142,7 @@ class MarsBaseState:
     )
     collected_samples: list[str] = field(default_factory=list)
     resource_stockpile: dict[str, float] = field(default_factory=lambda: dict(DEFAULT_STOCKPILE))
+    last_vote_proposal_phase: dict[str, int] = field(default_factory=dict)
     seed: int = 42
     config: SimConfig = field(default_factory=SimConfig)
 
@@ -215,9 +216,13 @@ class MarsBaseState:
         """Return action types unavailable to this agent in the current state."""
         blocked: set[str] = set()
 
-        if self.rover_fuel < 10:
+        if self.rover_fuel < self.config.rover_fuel_eva_floor:
             blocked.add(ActionType.CONDUCT_EVA.value)
-        if self.active_dust_storm and self.active_dust_storm.power_multiplier < 0.5:
+        if (
+            self.active_dust_storm
+            and self.active_dust_storm.power_multiplier
+            < self.config.dust_eva_severity_floor
+        ):
             blocked.add(ActionType.CONDUCT_EVA.value)
 
         if not self.collected_samples:
@@ -239,7 +244,7 @@ class MarsBaseState:
         """Return block reason if action cannot be performed."""
         if action_type.value in self.get_blocked_actions(agent_name):
             if action_type == ActionType.CONDUCT_EVA:
-                if self.rover_fuel < 10:
+                if self.rover_fuel < self.config.rover_fuel_eva_floor:
                     return "EVA aborted: insufficient rover fuel"
                 return "EVA aborted: dust storm too severe"
             if action_type == ActionType.ANALYZE_SAMPLE:
@@ -273,13 +278,57 @@ class MarsBaseState:
             f"- Recent events: {self.recent_events[-5:]}"
         )
 
+    def _power_coupling_factor(self) -> float:
+        """Efficiency multiplier for power-dependent systems.
+
+        Returns 1.0 when effective power >= threshold. Below threshold, ramps
+        linearly down to coupling_min_factor at zero effective power. This makes
+        low power degrade greenhouse output and ISRU recovery, forcing real
+        allocation trade-offs.
+        """
+        eff = self.effective_power()
+        threshold = self.config.coupling_power_threshold
+        if eff >= threshold:
+            return 1.0
+        min_factor = self.config.coupling_min_factor
+        ratio = eff / threshold if threshold > 0 else 1.0
+        return min_factor + (1.0 - min_factor) * ratio
+
+    def is_quiet_phase(self, agent_name: str) -> bool:
+        """True if the world is calm enough that an agent turn can be safely skipped.
+
+        Reads state only — no RNG, no mutation. Used by the opt-in fast-path.
+        """
+        c = self.config
+        if self.active_dust_storm is not None:
+            return False
+        if self.effective_power() < c.fast_path_power_floor:
+            return False
+        if self.oxygen < c.fast_path_o2_floor:
+            return False
+        if self.water < c.fast_path_water_floor:
+            return False
+        if self.food_days < c.fast_path_food_floor:
+            return False
+        if self.habitat_integrity < c.fast_path_integrity_floor:
+            return False
+        # Any pending vote this agent has NOT yet cast on => not quiet (they should vote).
+        for vote in self.pending_votes:
+            if agent_name not in vote.votes:
+                return False
+        return True
+
     def apply_phase_events(self, rng: Random) -> list[str]:
         """Apply passive world events at the start of each phase."""
         deltas: list[str] = []
 
-        if self.active_dust_storm is None and rng.random() < 0.15:
-            multiplier = rng.uniform(0.3, 0.7)
-            duration = rng.randint(1, 3)
+        if self.active_dust_storm is None and rng.random() < self.config.dust_storm_chance:
+            multiplier = rng.uniform(
+                self.config.dust_multiplier_min, self.config.dust_multiplier_max
+            )
+            duration = rng.randint(
+                self.config.dust_duration_min, self.config.dust_duration_max
+            )
             self.active_dust_storm = DustStorm(
                 power_multiplier=multiplier,
                 phases_remaining=duration,
@@ -298,10 +347,14 @@ class MarsBaseState:
                 self.active_dust_storm = None
 
         power_factor = self.effective_power() / 100.0
-        o2_loss = rng.uniform(0.3, 0.8) * (2.0 - power_factor)
-        water_loss = rng.uniform(2.0, 5.0)
-        food_loss = rng.uniform(0.2, 0.4)
-        integrity_loss = rng.uniform(0.2, 0.5)
+        o2_loss = rng.uniform(self.config.o2_loss_min, self.config.o2_loss_max) * (
+            2.0 - power_factor
+        )
+        water_loss = rng.uniform(self.config.water_loss_min, self.config.water_loss_max)
+        food_loss = rng.uniform(self.config.food_loss_min, self.config.food_loss_max)
+        integrity_loss = rng.uniform(
+            self.config.integrity_loss_min, self.config.integrity_loss_max
+        )
 
         self.oxygen -= o2_loss
         self.water -= water_loss
@@ -310,16 +363,25 @@ class MarsBaseState:
 
         # ISRU recovery (power-dependent)
         ls_alloc = self.power_allocations.get("life_support", 0)
-        if self.effective_power() > 30 and ls_alloc > 25:
-            isru_o2 = 0.15 * power_factor
-            isru_water = 0.5 * power_factor
+        factor = self._power_coupling_factor()
+        if (
+            self.effective_power() > self.config.isru_power_floor
+            and ls_alloc > self.config.isru_ls_alloc_floor
+        ):
+            isru_o2 = self.config.isru_o2_base * power_factor * factor
+            isru_water = self.config.isru_water_base * power_factor * factor
             self.oxygen += isru_o2
             self.water += isru_water
             deltas.append(f"ISRU recovery: O2 +{isru_o2:.2f}%, water +{isru_water:.1f}L")
 
         # Greenhouse food production
         gh_alloc = self.power_allocations.get("greenhouse", 0) / 100.0
-        food_gain = (self.greenhouse_efficiency / 100.0) * gh_alloc * 0.1
+        food_gain = (
+            (self.greenhouse_efficiency / 100.0)
+            * gh_alloc
+            * self.config.greenhouse_food_factor
+            * factor
+        )
         self.food_days += food_gain
 
         deltas.append(
@@ -328,7 +390,7 @@ class MarsBaseState:
             f"integrity -{integrity_loss:.2f}%"
         )
 
-        if rng.random() < 0.08:
+        if rng.random() < self.config.anomaly_chance:
             anomalies = [
                 "Anomalous methane spike detected near Sector C.",
                 "Seismic sensor registered micro-tremor under habitat pad.",
@@ -384,9 +446,17 @@ class MarsBaseState:
         if action.action_type == ActionType.REPAIR_SYSTEM:
             system = params["system"]
             effort = params["effort"]
-            effort_map = {"low": 1.0, "medium": 2.5, "high": 5.0}
+            effort_map = {
+                "low": self.config.repair_boost_low,
+                "medium": self.config.repair_boost_medium,
+                "high": self.config.repair_boost_high,
+            }
             boost = effort_map[effort]
-            power_cost = {"low": 2.0, "medium": 5.0, "high": 10.0}[effort]
+            power_cost = {
+                "low": self.config.repair_power_low,
+                "medium": self.config.repair_power_medium,
+                "high": self.config.repair_power_high,
+            }[effort]
             self.power_level -= power_cost
 
             if system == "habitat":
@@ -451,6 +521,14 @@ class MarsBaseState:
 
         elif action.action_type == ActionType.PROPOSE_VOTE:
             topic = params["topic"]
+            last_phase = self.last_vote_proposal_phase.get(agent_name)
+            cooldown = self.config.vote_proposal_cooldown_phases
+            if last_phase is not None and (self.phase_index - last_phase) < cooldown:
+                phases_left = cooldown - (self.phase_index - last_phase)
+                return [
+                    f"Vote proposal on cooldown for {agent_name} "
+                    f"({phases_left} more phase(s))"
+                ]
             topic_key = topic.casefold()
             if any(vote.topic.casefold() == topic_key for vote in self.pending_votes):
                 return [f"Vote already pending for topic '{topic}'"]
@@ -463,6 +541,7 @@ class MarsBaseState:
             )
             self.pending_votes.append(vote)
             deltas.append(f"Vote proposed: {topic} options={params['options']}")
+            self.last_vote_proposal_phase[agent_name] = self.phase_index
 
         elif action.action_type == ActionType.CAST_VOTE:
             topic = params["topic"]
@@ -484,19 +563,19 @@ class MarsBaseState:
         elif action.action_type == ActionType.CONDUCT_EVA:
             site = params["site"]
             hours = int(params["duration_hours"])
-            fuel_cost = hours * 3.5
+            fuel_cost = hours * self.config.eva_fuel_per_hour
             if self.rover_fuel < fuel_cost:
                 return [f"EVA aborted: insufficient rover fuel for {hours}h EVA"]
             self.rover_fuel -= fuel_cost
-            self.power_level -= hours * 1.5
+            self.power_level -= hours * self.config.eva_power_per_hour
             deltas.append(f"EVA at {site} for {hours}h (-{fuel_cost:.1f}% rover fuel)")
 
-            if rng.random() < 0.6:
+            if rng.random() < self.config.eva_sample_chance:
                 sample_id = f"S{self.sol_number}-{rng.randint(100, 999)}"
                 self.collected_samples.append(sample_id)
                 self._append_event(f"EVA recovered sample {sample_id} from {site}.")
                 deltas.append(f"Sample collected: {sample_id}")
-            if rng.random() < 0.15:
+            if rng.random() < self.config.eva_incident_chance:
                 damage = rng.uniform(1.0, 4.0)
                 self.habitat_integrity -= damage
                 deltas.append(f"EVA incident: habitat integrity -{damage:.1f}%")
@@ -589,12 +668,21 @@ class MarsBaseState:
             "power_allocations": self.power_allocations,
             "collected_samples": self.collected_samples,
             "resource_stockpile": self.resource_stockpile,
+            "last_vote_proposal_phase": self.last_vote_proposal_phase,
             "seed": self.seed,
+            "config": asdict(self.config),
         }
 
     @classmethod
     def from_dict(cls, data: dict[str, Any]) -> MarsBaseState:
         storm_data = data.get("active_dust_storm")
+        config_data = data.get("config")
+        if config_data:
+            valid_keys = {f.name for f in fields(SimConfig)}
+            filtered = {k: v for k, v in config_data.items() if k in valid_keys}
+            config = SimConfig(**filtered)
+        else:
+            config = SimConfig()
         return cls(
             power_level=data["power_level"],
             oxygen=data["oxygen"],
@@ -621,7 +709,9 @@ class MarsBaseState:
             ),
             collected_samples=data.get("collected_samples", []),
             resource_stockpile=data.get("resource_stockpile", dict(DEFAULT_STOCKPILE)),
+            last_vote_proposal_phase=data.get("last_vote_proposal_phase", {}),
             seed=data.get("seed", 42),
+            config=config,
         )
 
 
